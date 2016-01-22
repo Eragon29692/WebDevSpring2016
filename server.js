@@ -6,4 +6,7 @@ app.use('/public', express.static('public'));
 app.get('/hello', function(req, res){
     res.send('hello world');
 });
+app.get('/', function(req, res){
+    res.send('Duy Vu Project Page');
+});
 app.listen(port, ipaddress);
