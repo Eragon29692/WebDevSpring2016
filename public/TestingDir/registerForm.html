@@ -19,6 +19,7 @@
 
     <!-- Custom styles for this template -->
     <link href="ccs/dashboard.css" rel="stylesheet">
+    <link href="ccs/style.css" rel="stylesheet">
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><!--script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
@@ -67,18 +68,47 @@
             </ul>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-            <h1 class="page-header">Welcome!</h1>
-
-
-            <h2 class="text-justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit,
-                vulputate eu pharetra nec, mattis ac neque. Duis vulputate commodo lectus, ac blandit elit tincidunt id.
-                Sed rhoncus, tortor sed eleifend tristique, tortor mauris molestie elit, et lacinia ipsum quam nec dui.
-                Quisque nec mauris sit amet elit iaculis pretium sit amet quis magna. Aenean velit odio, elementum in
-                tempus ut, vehicula eu diam. Pellentesque rhoncus aliquam mattis. Ut vulputate eros sed felis sodales
-                nec vulputate justo hendrerit. Vivamus varius pretium ligula, a aliquam odio euismod sit amet. Quisque
-                laoreet sem sit amet orci ullamcorper at ultricies metus viverra. Pellentesque arcu mauris, malesuada
-                quis ornare accumsan, blandit sed diam.</h2>
-
+            <h1 class="page-header">Register</h1>
+            <form class="form-horizontal">
+                <div class="form-group">
+                    <label for="inputUserName" class="col-sm-3 control-label">Username:</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" id="inputUserName" placeholder="Username">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputPassword" class="col-sm-3 control-label">Password:</label>
+                    <div class="col-sm-9">
+                        <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="verifyPassword" class="col-sm-3 control-label">Verify Password:</label>
+                    <div class="col-sm-9">
+                        <input type="password" class="form-control" id="verifyPassword" placeholder="Verify Password">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputEmail" class="col-sm-3 control-label">Email:</label>
+                    <div class="col-sm-9">
+                        <input type="email" class="form-control" id="inputEmail" placeholder="Email">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-3 col-sm-9">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox"> Remember me
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-3 col-sm-9">
+                        <button type="submit" class="btn btn-default">Sign in</button>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
 </div>
