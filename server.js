@@ -7,6 +7,6 @@ app.get('/hello', function(req, res){
     res.send('hello world');
 });
 app.get('/', function(req, res){
-    res.send('Duy Vu Project Page');
+    res.redirect('/public');
 });
 app.listen(port, ipaddress);
