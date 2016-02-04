@@ -12,6 +12,11 @@ div.form-group > label.col-sm-3.control-label {
 	border-color: #DCDDDD; 
 }
 
+h1.page-header {
+    margin-top: 0;
+	border-bottom: transparent;
+}
+
 span.glyphicon.glyphicon-triangle-bottom {
     vertical-align: middle;
 }
@@ -38,4 +43,13 @@ td > span.glyphicon {
 
 td > span.glyphicon.glyphicon-pencil,  td > span.glyphicon.glyphicon-ok{
 	float: right;
+}
+
+.nav-tabs> li.inactive > a {
+	border: 1px solid #ddd
+}
+
+.nav-tabs> li.active > a {
+	border: 1px solid #bbb;
+	background-color: #ddd
 }
