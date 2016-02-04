@@ -1,3 +1,13 @@
 .form-horizontal .control-label {
     text-align: left;
 }
+.btn-secondary          { 
+	color: #333333; 
+	background-color: #DCDDDD; 
+	border-color: #DCDDDD; 
+}
+.btn-secondary:hover, .btn-secondary:focus, .btn-secondary:active, .btn-secondary.active, .open .dropdown-toggle.btn-secondary { 
+	color: #333333; 
+	background-color: #DCDDDD; 
+	border-color: #DCDDDD; 
+}
