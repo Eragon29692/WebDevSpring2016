@@ -1,4 +1,4 @@
-.form-horizontal .control-label {
+div.form-group > label.col-sm-3.control-label {
     text-align: left;
 }
 .btn-secondary          { 
@@ -10,4 +10,32 @@
 	color: #333333; 
 	background-color: #DCDDDD; 
 	border-color: #DCDDDD; 
+}
+
+span.glyphicon.glyphicon-triangle-bottom {
+    vertical-align: middle;
+}
+
+td > span.glyphicon {
+	font-size: large;
+}
+
+.table > tbody > tr > td {
+	vertical-align: middle;
+}
+
+@media (min-width: 992px) {
+    td > span.glyphicon {
+        font-size: x-large;
+    }
+}
+
+@media (min-width: 1200px) {
+    td > span.glyphicon {
+        font-size: xx-large;
+    }
+}
+
+td > span.glyphicon.glyphicon-pencil,  td > span.glyphicon.glyphicon-ok{
+	float: right;
 }
