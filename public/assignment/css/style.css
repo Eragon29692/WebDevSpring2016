@@ -1,0 +1,122 @@
+div.form-group > label.col-sm-3.control-label {
+    text-align: left;
+}
+
+.btn-secondary {
+    color: #333333;
+    background-color: #DCDDDD;
+    border-color: #DCDDDD;
+}
+
+.btn-secondary:hover, .btn-secondary:focus, .btn-secondary:active, .btn-secondary.active, .open .dropdown-toggle.btn-secondary {
+    color: #333333;
+    background-color: #DCDDDD;
+    border-color: #DCDDDD;
+}
+
+h1.page-header {
+    margin-top: 0;
+    border-bottom: transparent;
+}
+
+span.glyphicon.glyphicon-triangle-bottom {
+    vertical-align: middle;
+}
+
+.table > tbody > tr > td > span.glyphicon {
+    float: right;
+    margin-right: 5px;
+    vertical-align: middle;
+}
+
+form.form-horizontal > div.form-group > div.col-xs-5.col-xs-offset-1 > span.glyphicon {
+    margin-right: 5px;
+    vertical-align: middle;
+}
+
+.table > tbody > tr > td {
+    vertical-align: middle;
+}
+
+@media (min-width: 480px) and (max-width: 992px) {
+    .table > tbody > tr > td > span.glyphicon.forms-glyphicon {
+        margin-right: 20px;
+        font-size: large;
+    }
+}
+
+@media (min-width: 992px) {
+
+    .table > tbody > tr > td, .table > thead > tr > th, label {
+        font-size: 15px;
+    }
+
+    .table > tbody > tr > td > span.glyphicon, form.form-horizontal > div.form-group > div.col-xs-5.col-xs-offset-1 > span.glyphicon{
+        margin-right: 20px;
+        font-size: large;
+    }
+}
+
+@media (min-width: 1200px) {
+
+    .table > tbody > tr > td, .table > thead > tr > th, label {
+        font-size: 16px;
+    }
+
+    .table > tbody > tr > td > span.glyphicon {
+        margin-right: 40px;
+        font-size: x-large;
+    }
+
+    form.form-horizontal > div.form-group > div.col-xs-5.col-xs-offset-1 > span.glyphicon {
+        margin-right: 25px;
+        font-size: x-large;
+    }
+}
+
+.nav-tabs > li.inactive > a {
+    color: black;
+    border: 1px solid #ddd
+}
+
+.nav-tabs > li.active > a {
+    color: black;
+    border: 1px solid #bbb;
+    background-color: #ddd
+}
+
+form > div > label.col-xs-12.control-label {
+    text-align: left;
+    padding-top: 10px;
+}
+
+div.form-group > hr {
+    background-color: black;
+    height: 1px;
+}
+
+.glyphicon-none:before {
+    content: "\002b";
+    color: transparent !important;
+}
+
+.formBorder {
+    border-top-width: thin;
+    border-bottom-width: thin;
+    border-right-width: thin;
+    border-left-width: thin;
+    border-top-style: solid;
+    border-bottom-style: solid;
+    border-left-style: solid;
+    border-right-style: solid;
+    border-color: #dddddd;
+    padding-left: inherit;
+}
+
+.separatorCSS {
+    border-top-width: thin;
+    border-top-style: solid;
+    width: 100%;
+    border-color: #dddddd;
+}
+
