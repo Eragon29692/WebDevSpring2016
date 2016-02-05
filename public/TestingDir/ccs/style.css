@@ -21,35 +21,41 @@ span.glyphicon.glyphicon-triangle-bottom {
     vertical-align: middle;
 }
 
-td > span.glyphicon {
-	font-size: large;
-}
 
 .table > tbody > tr > td {
 	vertical-align: middle;
 }
 
 @media (min-width: 992px) {
-    td > span.glyphicon {
-        font-size: x-large;
-    }
+	td > span.glyphicon {
+		font-size: large;
+	}
+	.table > tbody > tr > td {
+		font-size: 15px;
+	}
 }
 
 @media (min-width: 1200px) {
     td > span.glyphicon {
-        font-size: xx-large;
+        font-size: x-large;
     }
+	.table > tbody > tr > td {
+		font-size: 16px;
+	}
 }
+
 
 td > span.glyphicon.glyphicon-pencil,  td > span.glyphicon.glyphicon-ok{
 	float: right;
 }
 
 .nav-tabs> li.inactive > a {
+	color: black;
 	border: 1px solid #ddd
 }
 
 .nav-tabs> li.active > a {
+	color: black;
 	border: 1px solid #bbb;
 	background-color: #ddd
 }
