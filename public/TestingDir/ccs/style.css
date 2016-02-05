@@ -83,3 +83,33 @@ form > div > label.col-xs-12.control-label {
     text-align: left;
     padding-top: 10px;
 }
+
+div.form-group > hr {
+    background-color: black;
+    height: 1px;
+}
+
+.glyphicon-none:before {
+    content: "\002b";
+    color: transparent !important;
+}
+
+.formBorder {
+    border-top-width: thin;
+    border-bottom-width: thin;
+    border-right-width: thin;
+    border-left-width: thin;
+    border-top-style: solid;
+    border-bottom-style: solid;
+    border-left-style: solid;
+    border-right-style: solid;
+    border-color: #dddddd;
+    padding-left: inherit;
+}
+
+.separatorCSS {
+    border-top-width: thin;
+    border-top-style: solid;
+    width: 100%;
+    border-color: #dddddd;
+}
