@@ -1,61 +1,63 @@
 div.form-group > label.col-sm-3.control-label {
     text-align: left;
 }
-.btn-secondary          { 
-	color: #333333; 
-	background-color: #DCDDDD; 
-	border-color: #DCDDDD; 
+
+.btn-secondary {
+    color: #333333;
+    background-color: #DCDDDD;
+    border-color: #DCDDDD;
 }
-.btn-secondary:hover, .btn-secondary:focus, .btn-secondary:active, .btn-secondary.active, .open .dropdown-toggle.btn-secondary { 
-	color: #333333; 
-	background-color: #DCDDDD; 
-	border-color: #DCDDDD; 
+
+.btn-secondary:hover, .btn-secondary:focus, .btn-secondary:active, .btn-secondary.active, .open .dropdown-toggle.btn-secondary {
+    color: #333333;
+    background-color: #DCDDDD;
+    border-color: #DCDDDD;
 }
 
 h1.page-header {
     margin-top: 0;
-	border-bottom: transparent;
+    border-bottom: transparent;
 }
 
 span.glyphicon.glyphicon-triangle-bottom {
     vertical-align: middle;
 }
 
-
 .table > tbody > tr > td {
-	vertical-align: middle;
+    vertical-align: middle;
 }
 
 @media (min-width: 992px) {
-	td > span.glyphicon {
-		font-size: large;
-	}
-	.table > tbody > tr > td {
-		font-size: 15px;
-	}
+    td > span.glyphicon {
+        font-size: large;
+    }
+
+    .table > tbody > tr > td {
+        font-size: 15px;
+    }
 }
 
 @media (min-width: 1200px) {
     td > span.glyphicon {
         font-size: x-large;
     }
-	.table > tbody > tr > td {
-		font-size: 16px;
-	}
+
+    .table > tbody > tr > td {
+        font-size: 16px;
+    }
 }
 
-
-td > span.glyphicon.glyphicon-pencil,  td > span.glyphicon.glyphicon-ok{
-	float: right;
+td > span.glyphicon.glyphicon-pencil, td > span.glyphicon.glyphicon-ok {
+    float: right;
 }
 
-.nav-tabs> li.inactive > a {
-	color: black;
-	border: 1px solid #ddd
+.nav-tabs > li.inactive > a {
+    color: black;
+    border: 1px solid #ddd
 }
 
-.nav-tabs> li.active > a {
-	color: black;
-	border: 1px solid #bbb;
-	background-color: #ddd
+.nav-tabs > li.active > a {
+    color: black;
+    border: 1px solid #bbb;
+    background-color: #ddd
 }

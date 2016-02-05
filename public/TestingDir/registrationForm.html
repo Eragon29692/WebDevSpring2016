@@ -9,17 +9,17 @@
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
 
-    <title>Profile</title>
+    <title>Forms</title>
 
     <!-- Bootstrap core CSS -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <!--link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet"-->
-
+    <link href="ccs/style.css" rel="stylesheet">
     <!-- Custom styles for this template -->
     <link href="ccs/dashboard.css" rel="stylesheet">
-    <link href="ccs/style.css" rel="stylesheet">
+
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><!--script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
@@ -60,50 +60,49 @@
         <div class="col-sm-3 col-md-2 sidebar">
             <ul class="nav nav-sidebar">
                 <li><a href="#">Home</a></li>
-                <li class="active"><a href="#">Profile<span class="sr-only">(current)</span></a></li>
+                <li><a href="#">Profile</a></li>
                 <li><a href="#">Admin</a></li>
-                <li><a href="#">Form</a></li>
+                <li class="active"><a href="#">Form<span class="sr-only">(current)</span></a></li>
             </ul>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-            <h1 class="page-header">Profile</h1>
-            <form class="form-horizontal">
-                <div class="form-group">
-                    <label for="inputUserName" class="col-sm-3 control-label">Username:</label>
-                    <div class="col-sm-9">
-                        <input type="text" class="form-control" id="inputUserName" placeholder="Username">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="inputPassword" class="col-sm-3 control-label">Password:</label>
-                    <div class="col-sm-9">
-                        <input type="password" class="form-control" id="inputPassword" placeholder="Password">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="inputFirstName" class="col-sm-3 control-label">First Name:</label>
-                    <div class="col-sm-9">
-                        <input type="text" class="form-control" id="inputFirstName" placeholder="First Name">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="inputLastName" class="col-sm-3 control-label">Last Name:</label>
-                    <div class="col-sm-9">
-                        <input type="text" class="form-control" id="inputLastName" placeholder="Last Name">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="inputEmail" class="col-sm-3 control-label">Email:</label>
-                    <div class="col-sm-9">
-                        <input type="email" class="form-control" id="inputEmail" placeholder="Email">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-sm-offset-3 col-sm-9">
-                        <a href="profilePage.html" type="submit" class="btn btn-secondary btn-lg btn-block">Update</a>
-                    </div>
-                </div>
-            </form>
+            <h1 class="page-header">Forms</h1>
+            <ul class="nav nav-tabs">
+                <li role="presentation" class="inactive"><a href="#">Forms</a></li>
+                <li role="presentation" class="active"><a href="#">Fields</a></li>
+            </ul>
+            <div class="table-responsive">
+                <table class="table table-striped table-bordered">
+                    <thead>
+                    <tr>
+                        <th><span class="glyphicon glyphicon-triangle-bottom" aria-label="Sort"></span> Form Name</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><input type="text" class="form-control" id="inputUserName" placeholder="name"></td>
+                        <td><span class="glyphicon glyphicon-plus" aria-label="Add"></span>
+                            <span class="glyphicon glyphicon-ok" aria-label="OK"></span></td>
+                    </tr>
+                    <tr>
+                        <td>Registration Form</td>
+                        <td><span class="glyphicon glyphicon-remove" aria-label="Remove"></span>
+                            <span class="glyphicon glyphicon-pencil" aria-label="Edit"></span></td>
+                    </tr>
+                    <tr>
+                        <td>Contact List</td>
+                        <td><span class="glyphicon glyphicon-remove" aria-label="Add"></span>
+                            <span class="glyphicon glyphicon-pencil" aria-label="OK"></span></td>
+                    </tr>
+                    <tr>
+                        <td>To Do List</td>
+                        <td><span class="glyphicon glyphicon-remove" aria-label="Add"></span>
+                            <span class="glyphicon glyphicon-pencil" aria-label="OK"></span></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>
