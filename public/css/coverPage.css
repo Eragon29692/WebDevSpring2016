@@ -150,7 +150,7 @@ body {
     .masthead,
     .mastfoot,
     .cover-container {
-        width: 100%; /* Must be percentage or pixels for horizontal alignment */
+        width: 700px; /* Must be percentage or pixels for horizontal alignment */
     }
 }
 
@@ -160,4 +160,8 @@ body {
     .cover-container {
         width: 700px;
     }
+}
+
+.about-me {
+    text-align: left;
 }
