@@ -9,7 +9,7 @@
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
 
-    <title>Profile</title>
+    <title>Welcome Page</title>
 
     <!-- Bootstrap core CSS -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
@@ -18,8 +18,7 @@
     <!--link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet"-->
 
     <!-- Custom styles for this template -->
-    <link href="ccs/dashboard.css" rel="stylesheet">
-    <link href="ccs/style.css" rel="stylesheet">
+    <link href="css/dashboard.css" rel="stylesheet">
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><!--script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
@@ -37,7 +36,7 @@
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand" href="#">Form Maker</a>
+            <a class="navbar-brand" href="../index.html">Form Maker</a>
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
                     aria-expanded="false" aria-controls="navbar">
                 <span class="sr-only">Toggle navigation</span>
@@ -48,6 +47,8 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
+                <li><a href="register.html">Register</a></li>
+                <li><a href="login.html">Login</a></li>
                 <li><a href="#">Username</a></li>
                 <li><a href="#">Logout</a></li>
             </ul>
@@ -59,51 +60,26 @@
     <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
             <ul class="nav nav-sidebar">
-                <li><a href="#">Home</a></li>
-                <li class="active"><a href="#">Profile<span class="sr-only">(current)</span></a></li>
-                <li><a href="#">Admin</a></li>
-                <li><a href="#">Form</a></li>
+                <li class="active"><a href="home.html">Home <span class="sr-only">(current)</span></a></li>
+                <li><a href="profile.html">Profile</a></li>
+                <li><a href="admin.html">Admin</a></li>
+                <li><a href="forms.html">Form</a></li>
             </ul>
         </div>
+
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-            <h1 class="page-header">Profile</h1>
-            <form class="form-horizontal">
-                <div class="form-group">
-                    <label for="inputUserName" class="col-sm-3 control-label">Username:</label>
-                    <div class="col-sm-9">
-                        <input type="text" class="form-control" id="inputUserName" placeholder="Username">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="inputPassword" class="col-sm-3 control-label">Password:</label>
-                    <div class="col-sm-9">
-                        <input type="password" class="form-control" id="inputPassword" placeholder="Password">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="inputFirstName" class="col-sm-3 control-label">First Name:</label>
-                    <div class="col-sm-9">
-                        <input type="text" class="form-control" id="inputFirstName" placeholder="First Name">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="inputLastName" class="col-sm-3 control-label">Last Name:</label>
-                    <div class="col-sm-9">
-                        <input type="text" class="form-control" id="inputLastName" placeholder="Last Name">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="inputEmail" class="col-sm-3 control-label">Email:</label>
-                    <div class="col-sm-9">
-                        <input type="email" class="form-control" id="inputEmail" placeholder="Email">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-sm-offset-3 col-sm-9">
-                        <a href="profilePage.html" type="submit" class="btn btn-secondary btn-lg btn-block">Update</a>
-                    </div>
-                </div>
-            </form>
+            <h1 class="page-header">Welcome!</h1>
+
+
+            <h3 class="text-justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit,
+                vulputate eu pharetra nec, mattis ac neque. Duis vulputate commodo lectus, ac blandit elit tincidunt id.
+                Sed rhoncus, tortor sed eleifend tristique, tortor mauris molestie elit, et lacinia ipsum quam nec dui.
+                Quisque nec mauris sit amet elit iaculis pretium sit amet quis magna. Aenean velit odio, elementum in
+                tempus ut, vehicula eu diam. Pellentesque rhoncus aliquam mattis. Ut vulputate eros sed felis sodales
+                nec vulputate justo hendrerit. Vivamus varius pretium ligula, a aliquam odio euismod sit amet. Quisque
+                laoreet sem sit amet orci ullamcorper at ultricies metus viverra. Pellentesque arcu mauris, malesuada
+                quis ornare accumsan, blandit sed diam.</h3>
+
         </div>
     </div>
 </div>

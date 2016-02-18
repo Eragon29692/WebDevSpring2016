@@ -9,17 +9,17 @@
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
 
-    <title>Register Page</title>
+    <title>Forms</title>
 
     <!-- Bootstrap core CSS -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <!--link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet"-->
-
+    <link href="css/style.css" rel="stylesheet">
     <!-- Custom styles for this template -->
-    <link href="ccs/dashboard.css" rel="stylesheet">
-    <link href="ccs/style.css" rel="stylesheet">
+    <link href="css/dashboard.css" rel="stylesheet">
+
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><!--script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
@@ -37,7 +37,7 @@
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand" href="#">Form Maker</a>
+            <a class="navbar-brand" href="../index.html">Form Maker</a>
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
                     aria-expanded="false" aria-controls="navbar">
                 <span class="sr-only">Toggle navigation</span>
@@ -48,8 +48,6 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li class="active"><a href="#">Register <span class="sr-only">(current)</span></a></li>
-                <li><a href="#">Login</a></li>
                 <li><a href="#">Username</a></li>
                 <li><a href="#">Logout</a></li>
             </ul>
@@ -61,54 +59,50 @@
     <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
             <ul class="nav nav-sidebar">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Profile</a></li>
-                <li><a href="#">Admin</a></li>
-                <li><a href="#">Form</a></li>
+                <li><a href="home.html">Home</a></li>
+                <li><a href="profile.html">Profile</a></li>
+                <li><a href="admin.html">Admin</a></li>
+                <li class="active"><a href="forms.html">Form<span class="sr-only">(current)</span></a></li>
             </ul>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-            <h1 class="page-header">Register</h1>
-            <form class="form-horizontal">
-                <div class="form-group">
-                    <label for="inputUserName" class="col-sm-3 control-label">Username:</label>
-                    <div class="col-sm-9">
-                        <input type="text" class="form-control" id="inputUserName" placeholder="Username">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="inputPassword" class="col-sm-3 control-label">Password:</label>
-                    <div class="col-sm-9">
-                        <input type="password" class="form-control" id="inputPassword" placeholder="Password">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="verifyPassword" class="col-sm-3 control-label">Verify Password:</label>
-                    <div class="col-sm-9">
-                        <input type="password" class="form-control" id="verifyPassword" placeholder="Verify Password">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="inputEmail" class="col-sm-3 control-label">Email:</label>
-                    <div class="col-sm-9">
-                        <input type="email" class="form-control" id="inputEmail" placeholder="Email">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-sm-offset-3 col-sm-9">
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox"> Remember me
-                            </label>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-sm-offset-3 col-sm-9">
-                        <a href="profilePage.html" type="submit" class="btn btn-secondary btn-lg btn-block">Register</a>
-                    </div>
-                </div>
-            </form>
+            <h1 class="page-header">Forms</h1>
+            <ul class="nav nav-tabs">
+                <li role="presentation" class="active"><a href="forms.html">Forms</a></li>
+                <li role="presentation" class="inactive"><a href="form-fields.html">Fields</a></li>
+            </ul>
+            <div class="table-responsive">
+                <table class="table table-striped table-bordered">
+                    <thead>
+                    <tr>
+                        <th class="col-xs-9"><span class="glyphicon glyphicon-triangle-bottom" aria-label="Sort"></span> Form Name</th>
+                        <th class="col-xs-3">Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><input type="text" class="form-control" id="inputUserName" placeholder="name"></td>
+                        <td><span class="glyphicon glyphicon-ok forms-glyphicon" aria-label="OK"></span>
+                            <span class="glyphicon glyphicon-plus forms-glyphicon" aria-label="Add"></span></td>
+                    </tr>
+                    <tr>
+                        <td><a href="form-fields.html" type="text">Registration Form</a></td>
+                        <td><span class="glyphicon glyphicon-pencil forms-glyphicon" aria-label="Edit"></span>
+                            <span class="glyphicon glyphicon-remove forms-glyphicon" aria-label="Remove"></span></td>
+                    </tr>
+                    <tr>
+                        <td><a href="form-fields.html" type="text">Contact List</a></td>
+                        <td><span class="glyphicon glyphicon-pencil forms-glyphicon" aria-label="OK"></span>
+                            <span class="glyphicon glyphicon-remove forms-glyphicon" aria-label="Add"></span></td>
+                    </tr>
+                    <tr>
+                        <td><a href="form-fields.html" type="text">To Do List</a></td>
+                        <td><span class="glyphicon glyphicon-pencil forms-glyphicon" aria-label="OK"></span>
+                            <span class="glyphicon glyphicon-remove forms-glyphicon" aria-label="Add"></span></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>
