@@ -1,5 +1,6 @@
+<script src="header.controller.js"></script>
 <header>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
+    <nav ng-controller="HeaderController" class="navbar navbar-inverse navbar-fixed-top">
         <div class="container-fluid">
             <div class="navbar-header">
                 <a class="navbar-brand" href="../index.html">Form Maker</a>
@@ -17,8 +18,7 @@
                     <li ng-class="{'active' : $location.url().indexOf('login') != -1}"><a href="#/login">Login</a></li>
                     <li ng-class="{'active' : $location.url().indexOf('username') != -1}"><a href="#/profile">Username</a></li>
                     <li ng-class="{'active' : $location.url().indexOf('admin') != -1, 'hidden':true}"><a href="#/admin">Admin</a></li>
-                    <li ng-class="{'active' : $location.url().indexOf('logout') != -1}"><a href="#/home">Logout</a></li>
-                </ul>
+                    <li ng-class="{'active' : $location.url().indexOf('logout') != -1}"><a href="#/home">Logout</a></li>                </ul>
             </div>
         </div>
     </nav>

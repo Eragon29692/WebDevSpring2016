@@ -8,8 +8,9 @@
 
     function Configure($routeProvider) {
         $routeProvider
-            //.when("/home",{
-            //    templateUrl: "home.html"
-            //})
+            .when("/home",{
+                templateUrl: "home.html"
+            })
+
     }
 })();
