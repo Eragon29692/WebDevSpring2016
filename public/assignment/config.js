@@ -26,5 +26,8 @@
             .when("/forms",{
                 templateUrl: "views/forms/fields.view.html"
             })
+            .otherwise({
+                redirectTo: "/home"
+            });
     }
 })();
