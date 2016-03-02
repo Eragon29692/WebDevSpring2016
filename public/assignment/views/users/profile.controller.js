@@ -11,27 +11,25 @@
         .module("FormBuilderApp")
         .controller("ProfileController", ProfileController);
 
-    function ProfileController(UserService, $scope, $location, $rootScope) {
+    function ProfileController(UserService, $location, $rootScope) {
         var vm = this;
 
         vm.update = update;
+        vm.user = $rootScope.currentUser;
 
         function init() {
-            $scope.user = $rootScope.currentUser;
+            //$scope.user = $rootScope.currentUser;
+            //$scope.username = $rootScope.currentUser.username;
         }
 
         init();
 
         function update(user) {
-            UserService.updateUser($scope.user._id, user, function (user) {
-                //var currentUser = user;
-                //if(currentUser != null) {
-                //UserService.setCurrentUser(currentUser);
+            UserService.updateUser(user._id, user, function (user) {
                 console.log(user);
                 $rootScope.currentUser = user;
                 UserService.findAllUsers(function(users){ console.log(users)});
                 $location.url("/profile");
-                //}
             });
         }
     }
