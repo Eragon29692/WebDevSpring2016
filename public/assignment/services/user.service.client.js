@@ -42,12 +42,12 @@
         return api;
 
         function findUserByCredentials(username, password, callback) {
-            for(var u in users) {
-                if(username === users[u].username && password === users[u].password) {
+            for (var u in users) {
+                if (username === users[u].username && password === users[u].password) {
                     return callback(users[u]);
                 }
             }
-            return null;
+            return callback(null);
         }
 
         function findAllUsers(callback) {
@@ -61,8 +61,8 @@
         }
 
         function deleteUserById(userId, callback) {
-            for(var i = users.length -1; i >= 0 ; i--){
-                if(userId === users[i]._id) {
+            for (var i = users.length - 1; i >= 0; i--) {
+                if (userId === users[i]._id) {
                     users.splice(i, 1);
                     return callback(users);
                 }
@@ -71,13 +71,16 @@
         }
 
         function updateUser(userId, user, callback) {
-            for(var u in users) {
-                if(userId === users[u]._id) {
+            for (var u in users) {
+                if (userId === users[u]._id) {
+                    //we doing for each elements since
+                    //the update form don't have the info
+                    //such as roles
                     users[u].username = user.username;
                     users[u].password = user.password;
                     users[u].firstName = user.firstName;
                     users[u].lastName = user.lastName;
-                    users[u].roles = user.roles;
+                    users[u].email = user.email;
                     return callback(users[u]);
                 }
             }

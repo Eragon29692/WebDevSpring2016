@@ -1,0 +1,32 @@
+<h1 class="page-header">Forms</h1>
+<ul class="nav nav-tabs">
+    <li role="presentation" class="active"><a href="forms.html">Forms</a></li>
+    <li role="presentation" class="inactive"><a href="form-fields.html">Fields</a></li>
+</ul>
+<div class="table-responsive">
+    <table class="table table-striped table-bordered">
+        <thead>
+        <tr>
+            <th class="col-xs-9"><span class="glyphicon glyphicon-triangle-bottom" aria-label="Sort"></span> Form Name
+            </th>
+            <th class="col-xs-3">Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td><input type="text" class="form-control" id="inputUserName" placeholder="name"></td>
+            <td>
+                <span class="glyphicon glyphicon-ok forms-glyphicon" aria-label="OK"></span>
+                <span class="glyphicon glyphicon-plus forms-glyphicon" aria-label="Add"></span>
+            </td>
+        </tr>
+        <tr ng-repeat="form in forms">
+            <td>{{form.title}}</td>
+            <td>
+                <span class="glyphicon glyphicon-pencil forms-glyphicon" aria-label="Edit"></span>
+                <span class="glyphicon glyphicon-remove forms-glyphicon" aria-label="Remove"></span>
+            </td>
+
+        </tbody>
+    </table>
+</div>

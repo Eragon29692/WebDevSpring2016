@@ -17,23 +17,27 @@
                 controller: "RegisterController",
                 controllerAs: "model"
             })
-            .when("/login",{
-                templateUrl: "views/users/login.view.html"
+
+            .when("/login", {
+                templateUrl: "views/users/login.view.html",
+                controller: "LoginController",
+                controllerAs: "model"
             })
+
             .when("/profile", {
                 templateUrl: "views/users/profile.view.html",
                 controller: "ProfileController",
                 controllerAs: "model",
-                //resolve: {
-                //    checkLoggedIn: checkLoggedIn
-                //}
             })
+
             .when("/admin",{
                 templateUrl: "views/admin/admin.view.html"
             })
+
             .when("/forms",{
-                templateUrl: "views/forms/fields.view.html"
+                templateUrl: "views/forms/forms.view.html"
             })
+
             .otherwise({
                 redirectTo: "/home"
             });
