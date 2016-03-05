@@ -59,7 +59,8 @@
                 _id      : (new Date()).getTime(),
                 username : user.username,
                 password : user.password,
-                email    : user.email
+                email    : user.email,
+                roles    : []
             };
             users.push(newUser);
             return callback(newUser);
@@ -82,7 +83,8 @@
                 password : user.password,
                 firstName: user.firstName,
                 lastName : user.lastName,
-                email    : user.email
+                email    : user.email,
+                roles    : user.roles
             };
             for (var u in users) {
                 if (userId === users[u]._id) {
