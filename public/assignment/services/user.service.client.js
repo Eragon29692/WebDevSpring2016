@@ -55,9 +55,15 @@
         }
 
         function createUser(user, callback) {
-            user._id = (new Date()).getTime();
-            users.push(user);
-            return callback(user);
+            var newUser = {
+                _id    : (new Date()).getTime(),
+                username : user.title,
+                password : user.password,
+                firstName: user.firstName,
+                lastName : user.lastName
+            };
+            users.push(newUser);
+            return callback(newUser);
         }
 
         function deleteUserById(userId, callback) {
@@ -71,17 +77,21 @@
         }
 
         function updateUser(userId, user, callback) {
+            var newUser = {
+                _id    : (new Date()).getTime(),
+                username : user.title,
+                password : user.password,
+                firstName: user.firstName,
+                lastName : user.lastName,
+                email    : user.email
+            };
             for (var u in users) {
                 if (userId === users[u]._id) {
                     //we doing for each elements since
                     //the update form don't have the info
                     //such as roles
-                    users[u].username = user.username;
-                    users[u].password = user.password;
-                    users[u].firstName = user.firstName;
-                    users[u].lastName = user.lastName;
-                    users[u].email = user.email;
-                    return callback(users[u]);
+                    users[u] = newUser
+                    return callback(newUser);
                 }
             }
             return null;

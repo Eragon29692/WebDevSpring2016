@@ -21,7 +21,6 @@
                     console.log(respone);
                     $rootScope.currentUser = respone;
                     $location.url("/profile");
-                    //}
                 });
         }
     }

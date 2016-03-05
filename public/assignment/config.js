@@ -27,7 +27,7 @@
             .when("/profile", {
                 templateUrl: "views/users/profile.view.html",
                 controller: "ProfileController",
-                controllerAs: "model",
+                controllerAs: "model"
             })
 
             .when("/admin",{
@@ -35,7 +35,9 @@
             })
 
             .when("/forms",{
-                templateUrl: "views/forms/forms.view.html"
+                templateUrl: "views/forms/forms.view.html",
+                //controller: "FormController",
+                //controllerAs: "model"
             })
 
             .otherwise({
