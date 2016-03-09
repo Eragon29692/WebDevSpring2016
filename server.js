@@ -1,5 +1,7 @@
 var express = require('express');
+var session = require('express-session');
 var app = express();
+
 var ipaddress = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
 var port = process.env.OPENSHIFT_NODEJS_PORT || 3000;
 app.use('/public', express.static('public'));
@@ -9,4 +11,8 @@ app.get('/hello', function(req, res){
 app.get('/', function(req, res){
     res.redirect('/public');
 });
+
+require('./public/Testing/omdb/server/app.js')(app);
+
 app.listen(port, ipaddress);
+
