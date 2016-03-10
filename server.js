@@ -23,7 +23,7 @@ app.get('/', function(req, res){
     res.redirect('/public');
 });
 
-require('./public/Testing/omdb/server/app.js')(app);
+//require('./public/Testing/omdb/server/app.js')(app);
 
 app.listen(port, ipaddress);
 
