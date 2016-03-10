@@ -60,7 +60,7 @@ form.form-horizontal > div.form-group > div.col-xs-5.col-xs-offset-1 > span.glyp
     }
 }
 
-/*change glyphycon text and glyphicon in songs.html*/
+/*change glyphycon text and glyphicon in library.html*/
 @media (min-width: 1200px) {
 
     .table > tbody > tr > td, .table > thead > tr > th, label {
@@ -91,7 +91,7 @@ form.form-horizontal > div.form-group > div.col-xs-5.col-xs-offset-1 > span.glyp
     background-color: #ddd
 }
 
-/*Username... on songs.html*/
+/*Username... on library.html*/
 form > div > label.col-xs-12.control-label {
     text-align: left;
     padding-top: 10px;
@@ -125,3 +125,17 @@ form > div > label.col-xs-12.control-label {
     border-color: #dddddd;
 }
 
+/*un search page header*/
+h1.search-page-header {
+    margin-top: 15%;
+    margin-bottom: 5%;
+    font-size: 400%;
+    border-bottom: transparent;
+}
+
+/*un search page header*/
+h1.project-page-header {
+    margin-top: 15%;
+    margin-bottom: 5%;
+    border-bottom: transparent;
+}

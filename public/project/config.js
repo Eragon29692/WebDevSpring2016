@@ -4,7 +4,7 @@
 "use strict";
 (function(){
     angular
-        .module("FormBuilderApp")
+        .module("MusicDBApp")
         .config(Configure);
 
     function Configure($routeProvider) {
@@ -35,7 +35,7 @@
             })
 
             .when("/library",{
-                templateUrl: "views/forms/forms.view.html",
+                templateUrl: "views/library/songs.view.html",
                 //controller: "FormController",
                 //controllerAs: "model"
             })

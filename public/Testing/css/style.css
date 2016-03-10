@@ -60,7 +60,7 @@ form.form-horizontal > div.form-group > div.col-xs-5.col-xs-offset-1 > span.glyp
     }
 }
 
-/*change glyphycon text and glyphicon in forms.html*/
+/*change glyphycon text and glyphicon in library.html*/
 @media (min-width: 1200px) {
 
     .table > tbody > tr > td, .table > thead > tr > th, label {
@@ -91,7 +91,7 @@ form.form-horizontal > div.form-group > div.col-xs-5.col-xs-offset-1 > span.glyp
     background-color: #ddd
 }
 
-/*Username... on forms.html*/
+/*Username... on library.html*/
 form > div > label.col-xs-12.control-label {
     text-align: left;
     padding-top: 10px;

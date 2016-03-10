@@ -6,10 +6,10 @@
     function configuration($routeProvider) {
         $routeProvider
             .when("/home", {
-                templateUrl: "views/home/home.view.html",
-                resolve: {
-                    getLoggedIn: getLoggedIn
-                }
+                templateUrl: "views/home/home.view.html"
+                //resolve: {
+                //    getLoggedIn: getLoggedIn
+                //}
             })
             .when("/login", {
                 templateUrl: "views/login/login.view.html",
@@ -24,26 +24,26 @@
             .when("/profile", {
                 templateUrl: "views/profile/profile.view.html",
                 controller: "ProfileController",
-                controllerAs: "model",
-                resolve: {
-                    checkLoggedIn: checkLoggedIn
-                }
+                controllerAs: "model"
+                //resolve: {
+                //    checkLoggedIn: checkLoggedIn
+                //}
             })
             .when("/search", {
                 templateUrl: "views/search/search.view.html",
                 controller: "SearchController",
-                controllerAs: "model",
-                resolve: {
-                    getLoggedIn: getLoggedIn
-                }
+                controllerAs: "model"
+                //resolve: {
+                //    getLoggedIn: getLoggedIn
+                //}
             })
             .when("/details/:imdbID", {
                 templateUrl: "views/details/details.view.html",
                 controller: "DetailsController",
-                controllerAs: "model",
-                resolve: {
-                    getLoggedIn: getLoggedIn
-                }
+                controllerAs: "model"
+                //resolve: {
+                //    getLoggedIn: getLoggedIn
+                //}
             })
             .otherwise({
                 redirectTo: "/home"
