@@ -14,14 +14,26 @@
         </tr>
         </thead>
         <tbody>
+        <tr>
+            <td><input ng-model="song.title" type="text" class="form-control" id="inputSong"
+                       placeholder="Song's name" required></td>
+            <td><input ng-model="song.artist" type="text" class="form-control" id="inputArtist"
+                       placeholder="Artist's name" required></td>
+            <td>
+                <span ng-click="updateSong(song);" class="glyphicon glyphicon-ok forms-glyphicon"
+                      aria-label="Update"></span>
+                <span ng-click="addSong(song);" class="glyphicon glyphicon-plus forms-glyphicon"
+                      aria-label="Add"></span>
+            </td>
+        </tr>
         <tr ng-repeat="song in songs">
             <td>{{song.title}}</td>
             <td>{{song.artist}}</td>
             <td>
-                <span ng-click="deleteUserSong(song);" class="glyphicon glyphicon-remove forms-glyphicon"
-                      aria-label="Delete"></span>
-                <span ng-click="selectSong(song);" class="glyphicon glyphicon-play forms-glyphicon"
+                <span ng-click="selectSong(song);" class="glyphicon glyphicon-pencil forms-glyphicon"
                       aria-label="Select"></span>
+                <span ng-click="deleteSong(song);" class="glyphicon glyphicon-remove forms-glyphicon"
+                      aria-label="Delete"></span>
             </td>
         </tr>
         </tbody>

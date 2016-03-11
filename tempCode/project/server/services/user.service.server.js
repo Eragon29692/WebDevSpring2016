@@ -1,7 +1,9 @@
 module.exports = function(app, songModel, userModel) {
     app.post("/api/project/MusicDB/login", login);
+    //app.get("/api/project/omdb/loggedin", loggedin);
+    //app.post("/api/project/omdb/logout", logout);
     app.get("/api/project/MusicDB/findAllUsers", findAllUsers);
-    app.post("/api/project/MusicDB/register", register);
+    app.post("/api/project/MusicBD/register", register);
     app.get("/api/project/MusicDB/profile/:userId", profile);
     app.post("/api/project/MusicBD/deleteUser", deleteUserById);
     app.post("/api/project/MusicBD/updateUser", updateUser);
@@ -17,13 +19,11 @@ module.exports = function(app, songModel, userModel) {
     function profile(req, res) {
         var userId = req.params.userId;
         var user = userModel.findUserByID(userId);
-        console.log(user);
         res.json(user);
     }
 
     function register(req, res) {
         var user = req.body;
-        //console.log(user);
         user = userModel.createUser(user);
         //req.session.currentUser = user;
         res.json(user);
@@ -31,9 +31,7 @@ module.exports = function(app, songModel, userModel) {
 
     function updateUser(req, res) {
         var user = req.body;
-        var userID = user._id;
-        user = userModel.updateUser(userID, user);
-        console.log(user);
+        user = userModel.updateUser(user._id, user);
         //req.session.currentUser = user;
         res.json(user);
     }
@@ -53,11 +51,9 @@ module.exports = function(app, songModel, userModel) {
 
     function login(req, res) {
         var credentials = req.body;
-        //console.log(credentials);
-        var user = userModel.findUserByCredentials(credentials);
+        var user = userModel.findUserByCredentials(credentials.username, credentials.password);
         //req.session.currentUser = user;
         res.json(user);
     }
-
 
 }

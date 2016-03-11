@@ -13,7 +13,6 @@
         $scope.addSong = addSong;
         $scope.updateSong = updateSong;
         $scope.deleteSong = deleteSong;
-        $scope.deleteUserSong = deleteUserSong;
         $scope.selectSong = selectSong;
 
         function init() {
@@ -23,37 +22,30 @@
         init();
 
         function render() {
-            SongService.findAllSongsForUser().then(function (response) {
-                $scope.songs = response.data;
+            SongService.findAllSongsForUser($rootScope.currentUser._id, function (response) {
+                $scope.songs = response;
             });
         }
 
         function addSong(song) {
             if (!(song === undefined))
-                SongService.createSong(song).then(function (respone) {
-                    console.log(respone.data);
+                SongService.createSong(song, function (respone) {
+                    console.log(respone);
                     render();
                 });
         }
 
         function updateSong(song) {
             if (!(song === undefined))
-                SongService.updateSongById(song).then(function (respone) {
-                    console.log(respone.data);
+                SongService.updateSongById(song._id, song, function (respone) {
+                    console.log(respone);
                 });
             render();
         }
 
         function deleteSong(song) {
-            SongService.deleteSongById(song).then( function (respone) {
-                console.log(respone.data);
-            });
-            render();
-        }
-
-        function deleteUserSong(song) {
-            SongService.deleteUserSong(song).then( function (respone) {
-                console.log(respone.data);
+            SongService.deleteSongById(song._id, function (respone) {
+                console.log(respone);
             });
             render();
         }

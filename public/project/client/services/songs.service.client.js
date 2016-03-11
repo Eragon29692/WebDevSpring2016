@@ -7,18 +7,13 @@
         .module("MusicDBApp")
         .factory("SongService", SongService);
 
-    function SongService(UserService) {
-        var songs = [];
-        songs = [
-            {"_id": "000", "title": "Hello", "artist": "Adele", "userId": 123},
-            {"_id": "010", "title": "Feeling Good", "artist": "Muse", "userId": 123},
-            {"_id": "020", "title": "Take Me To Church", "artist": "Hoizer", "userId": 234}
-        ];
+    function SongService($http, $rootScope) {
 
         var api = {
-            createSongForUser: createSongForUser,
+            //createSongForUser: createSongForUser,
             findAllSongsForUser: findAllSongsForUser,
             deleteSongById: deleteSongById,
+            deleteUserSong: deleteUserSong,
             updateSongById: updateSongById,
             /////////////////////
             createSong: createSong
@@ -26,82 +21,30 @@
         };
         return api;
 
-        //this function is soon to be depcrecated
-        function createSongForUser(userId, song, callback) {
-            var newSong = {
-                _id: (new Date()).getTime(),
-                title: song.title,
-                artist: song.artist,
-                userId: userId
-            };
-            songs.push(newSong);
-            return callback(newSong);
+        function createSong(song) {
+            return $http.post("/api/project/song/createSong", song);
         }
 
-        /*
-         function findAllSongsForUser(userId, callback) {
-         var userSongs = [];
-         for (var f in songs) {
-         if (userId === songs[f].userId) {
-         userSongs.push(songs[f]);
-         }
-         }
-         return callback(userSongs);
-         }
-         */
-        function deleteSongById(songId, callback) {
-            for (var i = songs.length - 1; i >= 0; i--) {
-                if (songId === songs[i]._id) {
-                    songs.splice(i, 1);
-                    return callback(songs);
-                }
-            }
-            return null;
+        function deleteSongById(song) {
+            console.log(song);
+            return $http.post("/api/project/song/deleteSongById", song);
         }
 
-        //this won't be used
-        function updateSongById(songId, newSong, callback) {
-            var updateSong = {
-                _id: newSong._id,
-                title: newSong.title,
-                artist: newSong.artist,
-                userId: newSong.userId
-            };
-            for (var f in songs) {
-                if (songId === songs[f]._id) {
-                    songs[f] = updateSong;
-                    return callback(updateSong);
-                }
-            }
-            return null;
-        }
-        ///////////////////////////////////////////////////////////
-        function findAllSongsForUser(userId, callback) {
-            UserService.findUserByID(userId, function (user) {
-                //console.log(user);
-                var userSongs = [];
-                for (var songID in user.songs) {
-                    for (var f in songs) {
-                        if (user.songs[songID] === songs[f]._id) {
-                            userSongs.push(songs[f]);
-                            //console.log(f);
-                        }
-                    }
-                }
-                return callback(userSongs);
-            });
+        function deleteUserSong(song) {
+            var deleteInfo = {};
+            deleteInfo.songID = song._id;
+            deleteInfo.userID = $rootScope.currentUser._id;
+            return $http.post("/api/project/song/deleteUserSong", deleteInfo);
         }
 
-
-        function createSong(song, callback) {
-            var newSong = {
-                _id: (new Date()).getTime(),
-                title: song.title,
-                artist: song.artist,
-            };
-            songs.push(newSong);
-            return callback(newSong);
+        function updateSongById(song) {
+            return $http.post("/api/project/song/updateSongById", song);
         }
+
+        function findAllSongsForUser() {
+            return $http.post("/api/project/song/findAllSongsForUser/"+$rootScope.currentUser._id);
+        }
+
 
     }
 })();

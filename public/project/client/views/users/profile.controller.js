@@ -11,20 +11,28 @@
         var vm = this;
 
         vm.update = update;
-        vm.user = $rootScope.currentUser;
+        vm.user = {};
 
         function init() {
+            var user = UserService.findUserByID().then(function (respone) {
+                vm.user = respone.data;
+                //console.log(respone.data);
+            });
+
+            //var user = $rootScope.currentUser;
+
         }
 
         init();
 
         function update(user) {
             if (vm.myform.$valid)
-                UserService.updateUser(user._id, user, function (respone) {
-                    console.log(respone);
-                    //$rootScope.currentUser = respone;
-                    $location.url("/profile");
-                });
+                console.log(user);
+            UserService.updateUser(user).then(function (respone) {
+                console.log(respone.data);
+                //$rootScope.currentUser = respone;
+                $location.url("/profile");
+            });
         }
     }
 })();

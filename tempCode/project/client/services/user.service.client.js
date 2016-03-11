@@ -7,7 +7,7 @@
         .module("MusicDBApp")
         .factory("UserService", UserService);
 
-    function UserService($http, $rootScope) {
+    function UserService() {
 
         var api = {
             findUserByCredentials: login,
@@ -26,11 +26,13 @@
         }
 
         function register(user) {
-            //console.log(user);
             return $http.post("/api/project/MusicDB/register", user);
         }
 
-        function login(credentials) {
+        function login(username, password) {
+            var credentials;
+            credentials.username = username;
+            credentials.password = password;
             return $http.post("/api/project/MusicDB/login", credentials);
         }
 
@@ -43,8 +45,8 @@
             return $http.post("/api/project/MusicDB/deleteUserById", userId);
         }
 
-        function updateUser(user) {
-            return $http.post("/api/project/MusicBD/updateUser", user);
+        function updateUser(userId, user) {
+            return $http.post("/api/project/MusicDB/updateUser", user);
         }
 
 

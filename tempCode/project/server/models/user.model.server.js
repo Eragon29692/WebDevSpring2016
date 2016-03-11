@@ -8,14 +8,13 @@ module.exports = function() {
         deleteUserById: deleteUserById,
         updateUser: updateUser,
         //////////////////////
-        findUserByID: findUserByID,
-        deleteUserSong: deleteUserSong
+        findUserByID: findUserByID
     };
     return api;
 
-    function findUserByCredentials(credentials) {
+    function findUserByCredentials(username, password) {
         for (var u in mock) {
-            if (credentials.username === mock[u].username && credentials.password === mock[u].password) {
+            if (username === mock[u].username && password === mock[u].password) {
                 return mock[u];
             }
         }
@@ -71,22 +70,9 @@ module.exports = function() {
 
     /////////////////////////////////////////////////////
     function findUserByID(userId) {
-        console.log(userId);
         for (var u in mock) {
-            if (userId == mock[u]._id) {
+            if (userId === mock[u]._id) {
                 return mock[u];
-            }
-        }
-        return null;
-    }
-
-
-    function deleteUserSong(songID, user) {
-        var userSongs = user.songs;
-        for (var i = userSongs.length - 1; i >= 0; i--) {
-            if (songID === userSongs[i]) {
-                user.songs.splice(i, 1);
-                return user.songs;
             }
         }
         return null;

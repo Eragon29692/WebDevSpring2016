@@ -3,12 +3,11 @@ module.exports = function () {
 
     var api = {
         //createSongForUser: createSongForUser,
-        //findAllSongsForUser: findAllSongsForUser,
+        findAllSongsForUser: findAllSongsForUser,
         deleteSongById: deleteSongById,
         updateSongById: updateSongById,
         /////////////////////
-        createSong: createSong,
-        findAllSongs: findAllSongs
+        createSong: createSong
     };
     return api;
 
@@ -37,9 +36,8 @@ module.exports = function () {
      }
      */
     function deleteSongById(songId) {
-        console.log(songId);
         for (var i = mock.length - 1; i >= 0; i--) {
-            if (songId == mock[i]._id) {
+            if (songId === mock[i]._id) {
                 mock.splice(i, 1);
                 return mock;
             }
@@ -65,7 +63,7 @@ module.exports = function () {
     }
 
     ///////////////////////////////////////////////////////////
-/*    function findAllSongsForUser(userId, callback) {
+    function findAllSongsForUser(userId, callback) {
         UserService.findUserByID(userId, function (user) {
             //console.log(user);
             var userSongs = [];
@@ -80,7 +78,7 @@ module.exports = function () {
             return callback(userSongs);
         });
     }
-*/
+
 
     function createSong(song) {
         var newSong = {
@@ -90,10 +88,6 @@ module.exports = function () {
         };
         mock.push(newSong);
         return newSong;
-    }
-
-    function  findAllSongs() {
-        return mock;
     }
 
 /*
