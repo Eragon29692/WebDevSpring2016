@@ -29,7 +29,7 @@
 
         function addSong(song) {
             if (!(song === undefined))
-                SongService.createSongForUser($rootScope.currentUser._id, song, function (respone) {
+                SongService.createSong(song, function (respone) {
                     console.log(respone);
                     render();
                 });
@@ -54,9 +54,11 @@
             var selectedSong = {
                 _id: song._id,
                 title: song.title,
-                userId: song.userId
+                artist: song.artist,
+                //userId: song.userId
             };
             $scope.song = selectedSong;
+            $rootScope.currentSong = selectedSong;
         }
     }
 })();

@@ -35,22 +35,22 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-route.js"></script>
     <script src="app.js"></script>
     <script src="config.js"></script>
-    <script src="views/main/main.controller.js"></script>
-    <script src="views/header/header.controller.js"></script>
-    <script src="views/sidebar/sidebar.controller.js"></script>
-    <script src="views/users/register.controller.js"></script>
-    <script src="views/users/profile.controller.js"></script>
-    <script src="views/users/login.controller.js"></script>
-    <script src="views/library/songs.controller.js"></script>
-    <script src="services/user.service.client.js"></script>
-    <script src="services/songs.service.client.js"></script>
-    <script src="views/header/header.controller.js"></script>
+    <script src="client/views/main/main.controller.js"></script>
+    <script src="client/views/header/header.controller.js"></script>
+    <script src="client/views/sidebar/sidebar.controller.js"></script>
+    <script src="client/views/users/register.controller.js"></script>
+    <script src="client/views/users/profile.controller.js"></script>
+    <script src="client/views/users/login.controller.js"></script>
+    <script src="client/views/library/songs.controller.js"></script>
+    <script src="client/services/user.service.client.js"></script>
+    <script src="client/services/songs.service.client.js"></script>
+    <script src="client/views/header/header.controller.js"></script>
 
 
 </head>
 
 <body ng-controller="MainController">
-<div ng-include="'views/header/header.view.html'"></div>
+<div ng-include="'client/views/header/header.view.html'"></div>
 
 
 <div class="container-fluid">
@@ -60,13 +60,7 @@
     </div>
 </div>
 
-<div ng-if="!(currentUser === undefined)">
-<footer class="footer">
-    <div class="container">
-        <p class="text-muted">Place sticky footer content here.</p>
-    </div>
-</footer>
-</div>
+<div ng-include="'client/views/footer/footer.view.html'"></div>
 <!-- Bootstrap core JavaScript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->

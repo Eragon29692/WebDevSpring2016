@@ -22,11 +22,29 @@ body {
 -------------------------------------------------- */
 /* Not required for template or sticky footer method. */
 
-.container {
+footer > div.container {
     width: auto;
-    max-width: 680px;
-    padding: 0 15px;
+    margin-top: 15px;
+    font-size: x-large;
+    white-space: nowrap;
+    overflow: hidden;
 }
+
+footer > div.container > div > span.glyphicon {
+    margin-left: 5px;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+footer > div.container > div > label {
+    font-size: large;
+    font-family: serif;
+    margin-left: 5px;
+    white-space: nowrap;
+    overflow: hidden;
+}
+/*
 .container .text-muted {
     margin: 20px 0;
 }
+*/

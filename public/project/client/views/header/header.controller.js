@@ -14,6 +14,7 @@
         init();
         function logout() {
             $rootScope.currentUser = undefined;
+            $rootScope.currentSong = undefined;
         }
     }
 })();

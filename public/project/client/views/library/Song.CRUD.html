@@ -17,7 +17,8 @@
         <tr>
             <td><input ng-model="song.title" type="text" class="form-control" id="inputSong"
                        placeholder="Song's name" required></td>
-            <td>Artist</td>
+            <td><input ng-model="song.artist" type="text" class="form-control" id="inputArtist"
+                       placeholder="Artist's name" required></td>
             <td>
                 <span ng-click="updateSong(song);" class="glyphicon glyphicon-ok forms-glyphicon"
                       aria-label="Update"></span>
