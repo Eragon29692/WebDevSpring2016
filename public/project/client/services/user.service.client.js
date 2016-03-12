@@ -40,7 +40,9 @@
         }
 
         function deleteUserById(userId) {
-            return $http.post("/api/project/MusicDB/deleteUserById", userId);
+            var deleteInfo = {};
+            deleteInfo.userID = userId;
+            return $http.post("/api/project/MusicBD/deleteUser", deleteInfo);
         }
 
         function updateUser(user) {

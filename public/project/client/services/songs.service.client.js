@@ -12,6 +12,7 @@
         var api = {
             //createSongForUser: createSongForUser,
             findAllSongsForUser: findAllSongsForUser,
+            findAllSongs: findAllSongs,
             deleteSongById: deleteSongById,
             deleteUserSong: deleteUserSong,
             updateSongById: updateSongById,
@@ -45,6 +46,9 @@
             return $http.post("/api/project/song/findAllSongsForUser/"+$rootScope.currentUser._id);
         }
 
+        function findAllSongs() {
+            return $http.get("/api/project/song/findAllSongs");
+        }
 
     }
 })();

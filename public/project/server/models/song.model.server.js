@@ -52,10 +52,9 @@ module.exports = function () {
         var updateSong = {
             _id: newSong._id,
             title: newSong.title,
-            artist: newSong.artist,
-            userId: newSong.userId
+            artist: newSong.artist
         };
-        for (var f in songs) {
+        for (var f in mock) {
             if (songId === mock[f]._id) {
                 mock[f] = updateSong;
                 return updateSong;

@@ -59,7 +59,7 @@ module.exports = function(app, songModel, userModel) {
 
     function updateSongById (req, res) {
         var song = req.body;
-        var song = songModel.createsong(song._id, song);
+        var song = songModel.updateSongById(song._id, song);
         res.json(song);
     }
 

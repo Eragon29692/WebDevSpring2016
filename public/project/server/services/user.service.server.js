@@ -39,7 +39,8 @@ module.exports = function(app, songModel, userModel) {
     }
 
     function deleteUserById(req, res) {
-        var userID = req.body;
+        var deleteInfo = req.body;
+        var userID = deleteInfo.userID;
         var user = userModel.deleteUserById(userID);
         //req.session.currentUser = user;
         res.json(user);

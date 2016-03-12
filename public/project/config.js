@@ -40,6 +40,18 @@
                 //controllerAs: "model"
             })
 
+            .when("/crudSong",{
+                templateUrl: "client/views/library/song.crud.view.html",
+                //controller: "FormController",
+                //controllerAs: "model"
+            })
+
+            .when("/crudUser",{
+                templateUrl: "client/views/users/user.crud.view.html",
+                //controller: "FormController",
+                //controllerAs: "model"
+            })
+
             .otherwise({
                 redirectTo: "/home"
             });

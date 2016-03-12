@@ -22,6 +22,8 @@
                             href="#/profile">{{currentUser.username}}</a></li>
                     <li ng-class="{'active' : $location.url().indexOf('admin') != -1, 'hidden' : currentUser === undefined || currentUser.roles.indexOf('admin') < 0}"><a href="#/admin">Admin</a>
                     </li>
+                    <li ng-class="{'active' : $location.url().indexOf('crud') != -1, 'hidden' : currentUser === undefined || currentUser.roles.indexOf('admin') < 0}"><a href="#/crudUser">CRUD</a>
+                    </li>
                     <li ng-click="logout();" ng-class="{'active' : $location.url().indexOf('logout') != -1, 'hidden' : currentUser === undefined}">
                         <a href="#/home">Logout</a></li>
                 </ul>
