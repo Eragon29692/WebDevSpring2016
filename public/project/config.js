@@ -35,21 +35,19 @@
             })
 
             .when("/library",{
-                templateUrl: "client/views/library/songs.view.html",
+                templateUrl: "client/views/library/songs.view.html"
                 //controller: "FormController",
                 //controllerAs: "model"
             })
 
             .when("/crudSong",{
-                templateUrl: "client/views/library/song.crud.view.html",
+                templateUrl: "client/views/library/song.crud.view.html"
                 //controller: "FormController",
                 //controllerAs: "model"
             })
 
             .when("/crudUser",{
-                templateUrl: "client/views/users/user.crud.view.html",
-                //controller: "FormController",
-                //controllerAs: "model"
+                templateUrl: "client/views/users/user.crud.view.html"
             })
 
             .otherwise({
