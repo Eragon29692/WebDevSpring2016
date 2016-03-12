@@ -38,7 +38,7 @@ module.exports = function(app, songModel, userModel) {
 
     function createsong (req, res) {
         var song = req.body;
-        song = songModel.createsong(song);
+        song = songModel.createSong(song);
         res.json(song);
     }
 

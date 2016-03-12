@@ -49,6 +49,5 @@
             return $http.post("/api/project/MusicBD/updateUser", user);
         }
 
-
     }
 })();

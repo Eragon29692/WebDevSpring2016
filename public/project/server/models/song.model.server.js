@@ -83,7 +83,7 @@ module.exports = function () {
 
     function createSong(song) {
         var newSong = {
-            _id: (new Date()).getTime(),
+            _id: (new Date()).getTime().toString(),
             title: song.title,
             artist: song.artist,
         };

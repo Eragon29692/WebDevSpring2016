@@ -7,7 +7,6 @@ module.exports = function() {
         createUser: createUser,
         deleteUserById: deleteUserById,
         updateUser: updateUser,
-        //////////////////////
         findUserByID: findUserByID,
         deleteUserSong: deleteUserSong
     };
@@ -28,12 +27,12 @@ module.exports = function() {
 
     function createUser(user) {
         var newUser = {
-            _id: (new Date()).getTime(),
+            _id: (new Date()).getTime().toString(),
             username: user.username,
             password: user.password,
             email: user.email,
             roles: [],
-            songs: []
+            songs: user.songs
         };
         mock.push(newUser);
         return newUser;

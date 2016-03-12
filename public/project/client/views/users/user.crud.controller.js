@@ -32,20 +32,28 @@
 
         function addUser(user) {
             if (!(user === undefined)) {
+                if (user.songs === undefined)
+                    user.songs = "";
                 user.songs = user.songs.split(",");
                 UserService.createUser(user).then(function (respone) {
                     console.log(respone.data);
-                    render();
+                    selectUser(respone.data);
                 });
+
             }
+            render();
         }
 
         function updateUser(user) {
             if (!(user === undefined)) {
+                if (user.songs === undefined)
+                    user.songs = "";
                 user.songs = user.songs.split(",");
                 UserService.updateUser(user).then(function (respone) {
                     console.log(respone.data);
+                    selectUser(respone.data);
                 });
+
             }
             render();
         }
@@ -60,9 +68,13 @@
         function selectUser(user) {
             var selectedUser = {
                 _id: user._id,
+                firstName: user.firstName,
+                lastName: user.lastName,
+                email: user.email,
+                roles: user.roles,
                 username: user.username,
                 password: user.password,
-                songs: user.songs
+                songs: user.songs.toString()
             };
             //selectedUser.songs = selectedUser.songs.split(",");
             $scope.user = selectedUser;
