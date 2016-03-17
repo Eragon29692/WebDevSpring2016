@@ -20,10 +20,10 @@
 
         function login(user) {
             if (vm.myform.$valid)
-                UserService.findUserByCredentials(user.username, user.password, function (respone) {
-                    if (respone != null) {
-                        console.log(respone);
-                        $rootScope.currentUser = respone;
+                UserService.findUserByCredentials(user.username, user.password).then(function (respone) {
+                    if (respone.data != null) {
+                        console.log(respone.data);
+                        $rootScope.currentUser = respone.data;
                         $location.url("/profile");
                     }
                     else {

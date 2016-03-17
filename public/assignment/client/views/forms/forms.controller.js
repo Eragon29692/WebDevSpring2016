@@ -21,30 +21,30 @@
         init();
 
         function render() {
-            FormService.findAllFormsForUser($rootScope.currentUser._id, function (response) {
-                $scope.forms = response;
+            FormService.findAllFormsForUser($rootScope.currentUser._id).then (function (response) {
+                $scope.forms = response.data;
             });
         }
 
         function addForm(form) {
             if (!(form === undefined))
-            FormService.createFormForUser($rootScope.currentUser._id, form, function (respone) {
-                console.log(respone);
+            FormService.createFormForUser($rootScope.currentUser._id, form).then (function (respone) {
+                console.log(respone.data);
                 render();
             });
         }
 
         function updateForm(form) {
             if (!(form === undefined))
-            FormService.updateFormById(form._id, form, function (respone) {
-                console.log(respone);
+            FormService.updateFormById(form._id, form).then (function (respone) {
+                console.log(respone.data);
             });
             render();
         }
 
         function deleteForm(form) {
-            FormService.deleteFormById(form._id, function (respone) {
-                console.log(respone);
+            FormService.deleteFormById(form._id).then (function (respone) {
+                console.log(respone.data);
             });
             render();
         }

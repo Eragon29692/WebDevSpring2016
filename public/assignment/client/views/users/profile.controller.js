@@ -20,8 +20,8 @@
 
         function update(user) {
             if (vm.myform.$valid)
-                UserService.updateUser(user._id, user, function (respone) {
-                    console.log(respone);
+                UserService.updateUser(user._id, user).then (function (respone) {
+                    console.log(respone.data);
                     //$rootScope.currentUser = respone;
                     $location.url("/profile");
                 });

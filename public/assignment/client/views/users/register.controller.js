@@ -17,9 +17,9 @@
 
         function register(user) {
             if (vm.myform.$valid)
-                UserService.createUser(user, function (respone) {
-                    console.log(respone);
-                    $rootScope.currentUser = respone;
+                UserService.createUser(user).then (function (respone) {
+                    console.log(respone.data);
+                    $rootScope.currentUser = respone.data;
                     $location.url("/profile");
                 });
         }
