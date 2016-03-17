@@ -34,7 +34,7 @@
                 templateUrl: "views/admin/admin.view.html"
             })
 
-            .when("/library",{
+            .when("/forms",{
                 templateUrl: "views/forms/forms.view.html",
                 //controller: "FormController",
                 //controllerAs: "model"

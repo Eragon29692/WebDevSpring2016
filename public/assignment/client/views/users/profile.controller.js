@@ -11,9 +11,12 @@
         var vm = this;
 
         vm.update = update;
-        vm.user = $rootScope.currentUser;
+        vm.user = {};
 
         function init() {
+            var user = UserService.findUserByUsername($rootScope.currentUser.username).then(function (respone) {
+                vm.user = respone.data;
+            });
         }
 
         init();
@@ -22,7 +25,6 @@
             if (vm.myform.$valid)
                 UserService.updateUser(user._id, user).then (function (respone) {
                     console.log(respone.data);
-                    //$rootScope.currentUser = respone;
                     $location.url("/profile");
                 });
         }

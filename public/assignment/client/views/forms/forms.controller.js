@@ -53,7 +53,8 @@
             var selectedForm = {
                 _id    : form._id,
                 title  : form.title,
-                userId : form.userId
+                userId : form.userId,
+                fields : form.fields
             };
             $scope.form = selectedForm;
         }
