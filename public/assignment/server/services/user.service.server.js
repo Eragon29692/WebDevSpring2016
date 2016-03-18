@@ -1,4 +1,4 @@
-module.exports = function(app, formModel, userModel) {
+module.exports = function(app, userModel) {
 
 
     app.post("/api/assignment/user", createUser);

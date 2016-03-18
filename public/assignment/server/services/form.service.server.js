@@ -1,4 +1,4 @@
-module.exports = function(app, formModel, userModel) {
+module.exports = function(app, formModel) {
 
 
     app.get("/api/assignment/user/:userId/form", findUserForm);

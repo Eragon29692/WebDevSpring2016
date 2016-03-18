@@ -1,6 +1,6 @@
 <h1 class="page-header">Forms</h1>
 <ul class="nav nav-tabs">
-    <li role="presentation" class="active"><a href="forms.html">Forms</a></li>
+    <li role="presentation" class="active"><a href="#/forms">Forms</a></li>
     <li role="presentation" class="inactive"><a href="form-fields.html">Fields</a></li>
 </ul>
 <div ng-controller="FormController" class="table-responsive">
@@ -14,7 +14,7 @@
         </thead>
         <tbody>
         <tr>
-            <td><input ng-model="form.title" type="text" class="form-control" id="inputForm"
+                <td><input ng-model="form.title" type="text" class="form-control" id="inputForm"
                        placeholder="Form's name" required></td>
             <td>
                 <span ng-click="updateForm(form);" class="glyphicon glyphicon-ok forms-glyphicon"
@@ -24,7 +24,7 @@
             </td>
         </tr>
         <tr ng-repeat="form in forms">
-            <td>{{form.title}}</td>
+            <td><a href="#/form/{{form._id}}/fields">{{form.title}}</a></td>
             <td>
                 <span ng-click="selectForm(form);" class="glyphicon glyphicon-pencil forms-glyphicon"
                       aria-label="Select"></span>

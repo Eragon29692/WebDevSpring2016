@@ -9,7 +9,7 @@
 
     function FormController(FormService, $scope, $location, $rootScope) {
         var vm = this;
-        var currentForm;
+
         $scope.addForm = addForm;
         $scope.updateForm = updateForm;
         $scope.deleteForm = deleteForm;

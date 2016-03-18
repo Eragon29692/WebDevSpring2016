@@ -1,87 +1,51 @@
 <h1 class="page-header">Forms: Registration Form</h1>
 <ul class="nav nav-tabs">
-    <li role="presentation" class="inactive"><a href="forms.html">Forms</a></li>
+    <li role="presentation" class="inactive"><a href="#/forms">Forms</a></li>
     <li role="presentation" class="active"><a href="form-fields.html">Fields</a></li>
 </ul>
-<form class="form-horizontal formBorder">
-    <div class="form-group">
-        <label for="inputFirstName" class="col-xs-12 control-label">First Name:</label>
-        <div class="col-xs-6">
-            <input type="text" class="form-control" id="inputFirstName" placeholder="First Name">
+<form name="model.myform" class="form-horizontal formBorder">
+
+    <div class="form-group" ng-repeat="field in model.fields" ng-switch="field.type">
+
+        <label class="col-xs-12 control-label">{{field.label}}:</label>
+
+        <div class="col-xs-6" ng-switch-when="TEXT">
+            <input type="text" class="form-control" placeholder={{field.placeholder}}>
         </div>
-        <div class="col-xs-5 col-xs-offset-1">
-            <span class="glyphicon glyphicon-pencil" aria-label="OK"></span>
-            <span class="glyphicon glyphicon-plus" aria-label="Add"></span>
-            <span class="glyphicon glyphicon-remove" aria-label="Remove"></span>
-            <span class="glyphicon glyphicon-align-justify" aria-label="Move"></span>
+
+        <div class="col-xs-6" ng-switch-when="TEXTAREA">
+            <textarea type="text" class="form-control" placeholder={{field.placeholder}}></textarea>
         </div>
-    </div>
-    <div class="form-group">
-        <label for="inputLastName" class="col-xs-12 control-label">Last Name:</label>
-        <div class="col-xs-6">
-            <input type="text" class="form-control" id="inputLastName" placeholder="Last Name">
+
+        <div class="col-xs-6" ng-switch-when="DATE">
+            <input type="date" class="form-control" placeholder="Select Date">
         </div>
-        <div class="col-xs-5 col-xs-offset-1">
-            <span class="glyphicon glyphicon-pencil" aria-label="OK"></span>
-            <span class="glyphicon glyphicon-plus" aria-label="Add"></span>
-            <span class="glyphicon glyphicon-remove" aria-label="Remove"></span>
-            <span class="glyphicon glyphicon-align-justify" aria-label="Move"></span>
-        </div>
-    </div>
-    <div class="form-group">
-        <label for="inputDoB" class="col-xs-12 control-label">Date of Birth:</label>
-        <div class="col-xs-6">
-            <input type="date" class="form-control" id="inputDoB" placeholder="Select Date">
-        </div>
-        <div class="col-xs-5 col-xs-offset-1">
-            <span class="glyphicon glyphicon-pencil" aria-label="OK"></span>
-            <span class="glyphicon glyphicon-plus" aria-label="Add"></span>
-            <span class="glyphicon glyphicon-remove" aria-label="Remove"></span>
-            <span class="glyphicon glyphicon-align-justify" aria-label="Move"></span>
-        </div>
-    </div>
-    <div class="form-group">
-        <label for="inputGender" class="col-xs-12 control-label">Gender:</label>
-        <div class="col-xs-6">
-            <select id="inputGender" class="form-control">
-                <option value="male">Male</option>
-                <option value="female">Female</option>
+
+        <div class="col-xs-6" ng-switch-when="OPTIONS">
+            <select class="form-control">
+                <option ng-repeat="option in field.options" value={{option.value}}>{{option.label}}</option>
             </select>
         </div>
-        <div class="col-xs-5 col-xs-offset-1">
-            <span class="glyphicon glyphicon-pencil" aria-label="OK"></span>
-            <span class="glyphicon glyphicon-plus" aria-label="Add"></span>
-            <span class="glyphicon glyphicon-remove" aria-label="Remove"></span>
-            <span class="glyphicon glyphicon-align-justify" aria-label="Move"></span>
-        </div>
-    </div>
 
-    <div class="form-group">
-        <label class="col-xs-12 control-label">Roles:</label>
-        <div class="col-xs-6">
-            <div><label><input type="checkbox" id="roleAdmin" checked> Amin </label></div>
-            <div><label><input type="checkbox" id="roleStudent"> Student</label></div>
-            <div><label><input type="checkbox" id="roleUser" checked> User</label></div>
+        <div class="col-xs-6" ng-switch-when="CHECKBOXES">
+            <div ng-repeat="option in field.options"><label><input type="checkbox"
+                                                                   {{option.value}}>{{option.label}}</label></div>
         </div>
-        <div class="col-xs-5 col-xs-offset-1">
-            <span class="glyphicon glyphicon-pencil" aria-label="OK"></span>
-            <span class="glyphicon glyphicon-plus" aria-label="Add"></span>
-            <span class="glyphicon glyphicon-remove" aria-label="Remove"></span>
-            <span class="glyphicon glyphicon-align-justify" aria-label="Move"></span>
-        </div>
-    </div>
 
-    <div class="form-group">
-        <label class="col-xs-12 control-label">License Agreement:</label>
-        <div class="col-xs-6">
-            <div><label><input type="radio" name="licenseYes" id="licenseYes" value="yes" checked></label>Yes
+        <div class="col-xs-6" ng-switch-when="RADIOS">
+            <div ng-repeat="option in field.options"><label><input type="radio" value={{option.value}}></label>{{option.label}}
             </div>
-            <div><label><input type="radio" name="licenseNo" id="licenseNo" value="no"></label>No</div>
         </div>
+
+        <div class="col-xs-6" ng-switch-default>
+            <input type="text" class="form-control" placeholder={{field.placeholder}}>
+        </div>
+
         <div class="col-xs-5 col-xs-offset-1">
             <span class="glyphicon glyphicon-pencil" aria-label="OK"></span>
             <span class="glyphicon glyphicon-plus" aria-label="Add"></span>
-            <span class="glyphicon glyphicon-remove" aria-label="Remove"></span>
+            <span ng-click="model.deleteField(field._id);" class="glyphicon glyphicon-remove"
+                  aria-label="Remove"></span>
             <span class="glyphicon glyphicon-align-justify" aria-label="Move"></span>
         </div>
     </div>
@@ -91,7 +55,7 @@
     <div class="form-group">
         <label for="inputLine" class="col-xs-12 control-label">Add New Field:</label>
         <div class="col-xs-6">
-            <select id="inputLine" class="form-control">
+            <select ng-model="model.field.type" id="inputLine" class="form-control" required>
                 <option value="singleLine">Single Line Text</option>
                 <option value="date">Date</option>
                 <option value="dropDown">Dropdown</option>
@@ -102,7 +66,7 @@
         </div>
         <div class="col-xs-5 col-xs-offset-1">
             <span class="glyphicon glyphicon-none" aria-label="none"></span>
-            <span class="glyphicon glyphicon-plus" aria-label="none"></span>
+            <span ng-click="model.addField(model.field.type);" class="glyphicon glyphicon-plus" aria-label="add"></span>
             <span class="glyphicon glyphicon-none" aria-label="none"></span>
             <span class="glyphicon glyphicon-none" aria-label="none"></span>
         </div>

@@ -8,7 +8,14 @@ module.exports = function () {
         Update: Update,
         Delete: Delete,
         findFormByTitle: findFormByTitle,
-        findUserForms: findUserForms
+        findUserForms: findUserForms,
+
+        //field endpoint functions
+        findAllFieldInForm: findAllFieldInForm,
+        findFieldInForm: findFieldInForm,
+        deleteFieldInForm: deleteFieldInForm,
+        createFieldInForm: createFieldInForm,
+        updateFieldInForm: updateFieldInForm
     };
     return api;
 
@@ -18,7 +25,7 @@ module.exports = function () {
             _id: (new Date()).getTime().toString(),
             title: form.title,
             userId: form.userId,
-            fields: form.fields
+            fields: []
         };
         mock.push(newForm);
         return newForm;
@@ -82,4 +89,47 @@ module.exports = function () {
         }
         return userForms;
     }
+
+
+    //field endpoint
+
+
+    function findAllFieldInForm(formId) {
+        return FindByID(formId).fields;
+    }
+
+    function findFieldInForm(fieldId, formId) {
+        var fields = findAllFieldInForm(formId);
+        for (var f in fields) {
+            if (fieldId === fields[f]._id) {
+                return fields[f];
+            }
+        }
+        return null;
+    }
+
+    function deleteFieldInForm(fieldId, formId) {
+        var fields = findAllFieldInForm(formId);
+        for (var i = fields.length - 1; i >= 0; i--) {
+            if (fieldId === fields[i]._id) {
+                fields.splice(i, 1);
+                return fields;
+            }
+        }
+        return null;
+    }
+
+    function createFieldInForm(field, formId) {
+        var fields = findAllFieldInForm(formId);
+        field._id = (new Date()).getTime().toString();
+        fields.push(field);
+        return field;
+    }
+
+    function updateFieldInForm(fieldId, newField, formId) {
+        var field = findFieldInForm(fieldId, formId);
+        var field = newField;
+        return newField;
+    }
+
 }

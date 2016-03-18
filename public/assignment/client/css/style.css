@@ -124,4 +124,6 @@ form > div > label.col-xs-12.control-label {
     width: 95%;
     border-color: #dddddd;
 }
-
+textarea {
+    resize: none;
+}
