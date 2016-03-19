@@ -7,7 +7,7 @@
         .module("FormBuilderApp")
         .controller("FieldController", FieldController);
 
-    function FieldController(FieldService, $scope, $location, $rootScope, $routeParams) {
+    function FieldController(FieldService, $scope, $location, $rootScope, $routeParams, $uibModal) {
         var vm = this;
 
 
@@ -16,6 +16,7 @@
         vm.updateForm = updateForm;
 
         vm.selectForm = selectForm;
+        vm.open = open;
 
         vm.render = render;
 
@@ -24,7 +25,6 @@
         }
 
         init();
-
 
         function render() {
             FieldService.getFieldsForForm($routeParams.formId).then(function (response) {
@@ -96,5 +96,42 @@
             };
             $scope.form = selectedForm;
         }
+
+
+        //modal
+        function open(field) {
+            var modalInstance = $uibModal.open({
+                templateUrl: 'views/forms/modal.template.html',
+                controller: 'ModalInstanceCtrl',
+                resolve: {
+                    field: function () {
+                        return field;
+                    }
+                }
+            });
+        }
+
+
     }
+
+
+    angular.module("FormBuilderApp").controller('ModalInstanceCtrl', function ($scope, $uibModalInstance, field) {
+        $scope.field = field;
+
+        console.log(field);
+        function init() {
+
+        }
+
+        init();
+
+        $scope.ok = function () {
+            $uibModalInstance.close();
+        };
+
+        $scope.cancel = function () {
+            $uibModalInstance.dismiss('cancel');
+        };
+    });
+
 })();

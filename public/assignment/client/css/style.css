@@ -34,6 +34,12 @@ form.form-horizontal > div.form-group > div.col-xs-5.col-xs-offset-1 > span.glyp
     vertical-align: middle;
 }
 
+/*changing to ul*/
+form.form-horizontal > div > div.form-group > div.col-xs-5.col-xs-offset-1 > span.glyphicon {
+    margin-right: 5px;
+    vertical-align: middle;
+}
+
 /*style text in table rows*/
 .table > tbody > tr > td {
     vertical-align: middle;
@@ -58,6 +64,11 @@ form.form-horizontal > div.form-group > div.col-xs-5.col-xs-offset-1 > span.glyp
         margin-right: 20px;
         font-size: large;
     }
+    /*adding div*/
+    .table > tbody > tr > td > span.glyphicon, form.form-horizontal > div > div.form-group > div.col-xs-5.col-xs-offset-1 > span.glyphicon{
+        margin-right: 20px;
+        font-size: large;
+    }
 }
 
 /*change glyphycon text and glyphicon in songs.html*/
@@ -73,6 +84,12 @@ form.form-horizontal > div.form-group > div.col-xs-5.col-xs-offset-1 > span.glyp
     }
 
     form.form-horizontal > div.form-group > div.col-xs-5.col-xs-offset-1 > span.glyphicon {
+        margin-right: 25px;
+        font-size: x-large;
+    }
+
+    /*changing to ul*/
+    form.form-horizontal > div > div.form-group > div.col-xs-5.col-xs-offset-1 > span.glyphicon {
         margin-right: 25px;
         font-size: x-large;
     }
@@ -96,6 +113,13 @@ form > div > label.col-xs-12.control-label {
     text-align: left;
     padding-top: 10px;
 }
+
+/*changing to ul*/
+form > div > div > label.col-xs-12.control-label {
+    text-align: left;
+    padding-top: 10px;
+}
+
 
 /*adding blank glyphicon*/
 .glyphicon-none:before {
@@ -126,4 +150,8 @@ form > div > label.col-xs-12.control-label {
 }
 textarea {
     resize: none;
+}
+/*center modal*/
+.modal-dialog {
+    margin-top: 30%;
 }
