@@ -5,6 +5,8 @@ module.exports = function(app, formModel) {
     app.delete("/api/assignment/form/:formId/field/:fieldId", deleteFieldInForm);
     app.post("/api/assignment/form/:formId/field", createFieldInForm);
     app.put("/api/assignment/form/:formId/field/:fieldId", updateFieldInForm);
+    //update sort order
+    app.put("/api/assignment/form/:formId/field", updateOrder);
 
 
     function findAllFieldInForm(req, res) {
@@ -39,6 +41,14 @@ module.exports = function(app, formModel) {
         var formId = req.params.formId;
         var fieldId = req.params.fieldId;
         var forms = formModel.updateFieldInForm(fieldId, newField, formId);
+        res.json(forms);
+    }
+
+    function updateOrder(req, res) {
+        var newOrder = req.body;
+        var formId = req.params.formId;
+        console.log(newOrder);
+        var forms = formModel.updateOrder(newOrder, formId);
         res.json(forms);
     }
 

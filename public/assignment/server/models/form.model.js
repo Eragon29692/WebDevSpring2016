@@ -15,7 +15,8 @@ module.exports = function () {
         findFieldInForm: findFieldInForm,
         deleteFieldInForm: deleteFieldInForm,
         createFieldInForm: createFieldInForm,
-        updateFieldInForm: updateFieldInForm
+        updateFieldInForm: updateFieldInForm,
+        updateOrder: updateOrder
     };
     return api;
 
@@ -134,6 +135,15 @@ module.exports = function () {
             }
         }
         return newField;
+    }
+
+    function updateOrder(newOrder, formId) {
+        console.log(fields);
+        var fields = findAllFieldInForm(formId);
+        var temp = fields[newOrder.first];
+        fields[newOrder.first] = fields[newOrder.second];
+        fields[newOrder.second] = temp;
+        return fields;
     }
 
 }

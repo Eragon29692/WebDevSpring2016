@@ -14,7 +14,8 @@
             getFieldsForForm: getFieldsForForm,
             getFieldForForm: getFieldForForm,
             deleteFieldFromForm: deleteFieldFromForm,
-            updateField: updateField
+            updateField: updateField,
+            updateOrder: updateOrder
         };
         return api;
 
@@ -37,6 +38,11 @@
         function updateField(fieldId, formId, newField) {
             console.log("ran");
             return $http.put("/api/assignment/form/" + formId + "/field/" + fieldId, newField);
+        }
+
+        function updateOrder(newOrder, formId) {
+            console.log(newOrder);
+            return $http.put("/api/assignment/form/" + formId + "/field", newOrder);
         }
     }
 })();

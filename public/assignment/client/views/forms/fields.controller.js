@@ -13,12 +13,12 @@
 
         vm.addField = addField;
         vm.deleteField = deleteField;
-        vm.updateForm = updateForm;
-
-        vm.selectForm = selectForm;
+        //vm.updateForm = updateForm;
+        //vm.selectForm = selectForm;
         vm.open = open;
 
         vm.render = render;
+        //vm.sortableOptions = sortableOptions;
 
         function init() {
             render();
@@ -104,23 +104,21 @@
         }
 
 
-        //modal
 
+        //sorting
         vm.sortableOptions = {
-            /*
-            update: function(e, ui) {
-                var logEntry = tmpList.map(function(i){
-                    return i.value;
-                }).join(', ');
-                //$scope.sortingLog.push('Update: ' + logEntry);
-            },*/
+            start: function(e, ui) {
+                ui.item.data('startPos', $(ui.item).index());
+            },
             stop: function(e, ui) {
-                // this callback has the changed model
-                console.log(ui.field);
+                console.log(ui.item.data('startPos'));
+                console.log($(ui.item).index());
+                var newOrder = {first:ui.item.data('startPos'), second:$(ui.item).index()};
+                FieldService.updateOrder(newOrder, $routeParams.formId);
             }
         };
 
-
+        //modal
         function open(field) {
             var modalInstance = $uibModal.open({
                 templateUrl: 'views/forms/modal.template.html',
