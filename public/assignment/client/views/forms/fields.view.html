@@ -1,10 +1,10 @@
 <h1 class="page-header">Forms: Registration Form</h1>
 <ul class="nav nav-tabs">
     <li role="presentation" class="inactive"><a href="#/forms">Forms</a></li>
-    <li role="presentation" class="active"><a href="form-fields.html">Fields</a></li>
+    <li role="presentation" class="active"><a href="#/forms">Fields</a></li>
 </ul>
 <form name="model.myform" class="form-horizontal formBorder">
-    <div ui-sortable ng-model="model.fields">
+    <div ui-sortable="model.sortableOptions" ng-model="model.fields">
         <div class="form-group" ng-repeat="field in model.fields" ng-switch="field.type">
 
             <label class="col-xs-12 control-label">{{field.label}}:</label>

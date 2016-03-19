@@ -127,8 +127,12 @@ module.exports = function () {
     }
 
     function updateFieldInForm(fieldId, newField, formId) {
-        var field = findFieldInForm(fieldId, formId);
-        var field = newField;
+        var fields = findAllFieldInForm(formId);
+        for (var f in fields) {
+            if (fieldId === fields[f]._id) {
+                fields[f] = newField;
+            }
+        }
         return newField;
     }
 

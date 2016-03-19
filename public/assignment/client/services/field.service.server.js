@@ -35,6 +35,7 @@
         }
 
         function updateField(fieldId, formId, newField) {
+            console.log("ran");
             return $http.put("/api/assignment/form/" + formId + "/field/" + fieldId, newField);
         }
     }
