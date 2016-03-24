@@ -10,44 +10,56 @@
     function Configure($routeProvider) {
         $routeProvider
             .when("/home",{
-                templateUrl: "client/views/home/home.view.html"
+                templateUrl: "views/home/home.view.html"
             })
             .when("/register", {
-                templateUrl: "client/views/users/register.view.html",
+                templateUrl: "views/users/register.view.html",
                 controller: "RegisterController",
                 controllerAs: "model"
             })
 
             .when("/login", {
-                templateUrl: "client/views/users/login.view.html",
+                templateUrl: "views/users/login.view.html",
                 controller: "LoginController",
                 controllerAs: "model"
             })
 
             .when("/profile", {
-                templateUrl: "client/views/users/profile.view.html",
+                templateUrl: "views/users/profile.view.html",
                 controller: "ProfileController",
                 controllerAs: "model"
             })
 
             .when("/admin",{
-                templateUrl: "client/views/admin/admin.view.html"
+                templateUrl: "views/admin/admin.view.html"
             })
 
             .when("/library",{
-                templateUrl: "client/views/library/songs.view.html"
+                templateUrl: "views/library/songs.view.html"
                 //controller: "FormController",
                 //controllerAs: "model"
             })
 
             .when("/crudSong",{
-                templateUrl: "client/views/library/song.crud.view.html"
+                templateUrl: "views/library/song.crud.view.html"
                 //controller: "FormController",
                 //controllerAs: "model"
             })
 
+            .when("/playlist",{
+                templateUrl: "views/library/playlist.view.html",
+                //controller: "PlaylistController",
+                //controllerAs: "model"
+            })
+
+            .when("/playlist/:playlist/songs",{
+                templateUrl: "views/library/playlistDetail.view.html",
+                controller: "PlaylistDetailController",
+                controllerAs: "model"
+            })
+
             .when("/crudUser",{
-                templateUrl: "client/views/users/user.crud.view.html"
+                templateUrl: "views/users/user.crud.view.html"
             })
 
             .otherwise({

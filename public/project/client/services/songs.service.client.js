@@ -10,7 +10,6 @@
     function SongService($http, $rootScope) {
 
         var api = {
-            //createSongForUser: createSongForUser,
             findAllSongsForUser: findAllSongsForUser,
             findAllSongs: findAllSongs,
             deleteSongById: deleteSongById,
@@ -43,7 +42,7 @@
         }
 
         function findAllSongsForUser() {
-            return $http.post("/api/project/song/findAllSongsForUser/"+$rootScope.currentUser._id);
+            return $http.get("/api/project/song/findAllSongsForUser/"+$rootScope.currentUser._id);
         }
 
         function findAllSongs() {

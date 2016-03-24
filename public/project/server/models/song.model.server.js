@@ -8,7 +8,8 @@ module.exports = function () {
         updateSongById: updateSongById,
         /////////////////////
         createSong: createSong,
-        findAllSongs: findAllSongs
+        findAllSongs: findAllSongs,
+        findSongById: findSongById
     };
     return api;
 
@@ -95,6 +96,14 @@ module.exports = function () {
         return mock;
     }
 
+    function findSongById(songId) {
+        for (var s in mock) {
+            if (mock[s]._id === songId) {
+                return mock[s];
+            }
+        }
+        return null;
+    }
 /*
     function findMovieByImdbID(imdbID) {
         for (var m in movies) {
