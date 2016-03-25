@@ -78,6 +78,7 @@
                 });
         }
 
+        //maybe deleted
         function updateForm(form) {
             if (!(form === undefined))
                 FormService.updateFormById(form._id, form).then(function (respone) {
@@ -104,16 +105,15 @@
         }
 
 
-
         //sorting
         vm.sortableOptions = {
-            start: function(e, ui) {
+            start: function (e, ui) {
                 ui.item.data('startPos', $(ui.item).index());
             },
-            stop: function(e, ui) {
+            stop: function (e, ui) {
                 console.log(ui.item.data('startPos'));
                 console.log($(ui.item).index());
-                var newOrder = {first:ui.item.data('startPos'), second:$(ui.item).index()};
+                var newOrder = {first: ui.item.data('startPos'), second: $(ui.item).index()};
                 FieldService.updateOrder(newOrder, $routeParams.formId);
             }
         };

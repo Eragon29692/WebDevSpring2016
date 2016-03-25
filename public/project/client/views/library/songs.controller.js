@@ -57,7 +57,7 @@
             });
             render();
         }
-
+        //can be delegated to just the last line
         function selectSong(song) {
             var selectedSong = {
                 _id: song._id,

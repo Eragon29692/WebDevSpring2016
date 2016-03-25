@@ -13,39 +13,39 @@
     function PlaylistDetailService($http) {
 
         var api = {
-            createSongForPlaylist: createSongForPlaylist,
+            //createSongForPlaylist: createSongForPlaylist,
             getSongsForPlaylist: getSongsForPlaylist,
             getSongForPlaylist: getSongForPlaylist,
             deleteSongFromPlaylist: deleteSongFromPlaylist,
-            updateSong: updateSong,
+            //updateSong: updateSong,
             updateOrder: updateOrder
         };
         return api;
-
+/*
         function createSongForPlaylist(newSong, playlistId) {
-            return $http.post("/api/assignment/playlist/" + playlistId + "/song", newSong);
+            return $http.post("/api/project/playlist/" + playlistId + "/song", newSong);
         }
-
+*/
         function getSongsForPlaylist(playlistId) {
-            return $http.get("/api/assignment/playlist/" + playlistId + "/song");
+            return $http.get("/api/project/playlist/" + playlistId + "/song");
         }
 
         function getSongForPlaylist(songId, playlistId) {
-            return $http.get("/api/assignment/playlist/" + playlistId + "/song/" + songId);
+            return $http.get("/api/project/playlist/" + playlistId + "/song/" + songId);
         }
 
         function deleteSongFromPlaylist(songId, playlistId) {
-            return $http.delete("/api/assignment/playlist/" + playlistId + "/song/" + songId);
+            return $http.delete("/api/project/playlist/" + playlistId + "/song/" + songId);
         }
-
+/*
         function updateSong(songId, playlistId, newSong) {
             console.log("ran");
-            return $http.put("/api/assignment/playlist/" + playlistId + "/song/" + songId, newSong);
+            return $http.put("/api/project/playlist/" + playlistId + "/song/" + songId, newSong);
         }
-
+*/
         function updateOrder(newOrder, playlistId) {
             console.log(newOrder);
-            return $http.put("/api/assignment/playlist/" + playlistId + "/song", newOrder);
+            return $http.put("/api/project/playlist/" + playlistId + "/song", newOrder);
         }
     }
 })();

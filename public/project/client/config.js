@@ -40,19 +40,13 @@
                 //controllerAs: "model"
             })
 
-            .when("/crudSong",{
-                templateUrl: "views/library/song.crud.view.html"
-                //controller: "FormController",
-                //controllerAs: "model"
-            })
-
             .when("/playlist",{
                 templateUrl: "views/library/playlist.view.html",
                 //controller: "PlaylistController",
                 //controllerAs: "model"
             })
 
-            .when("/playlist/:playlist/songs",{
+            .when("/playlist/:playlistId/songs",{
                 templateUrl: "views/library/playlistDetail.view.html",
                 controller: "PlaylistDetailController",
                 controllerAs: "model"
@@ -60,6 +54,14 @@
 
             .when("/crudUser",{
                 templateUrl: "views/users/user.crud.view.html"
+            })
+
+            .when("/crudPlaylist",{
+                templateUrl: "views/library/playlist.crud.view.html"
+            })
+
+            .when("/crudSong",{
+                templateUrl: "views/library/song.crud.view.html"
             })
 
             .otherwise({

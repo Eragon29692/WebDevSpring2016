@@ -24,7 +24,7 @@
             </td>
         </tr>
         <tr ng-repeat="playlist in playlists">
-            <td><a href="#/playlist/{{playlist._id}}/songs">{{playlist.title}}</a></td>
+            <td><a ng-href="#/playlist/{{playlist._id}}/songs">{{playlist.title}}</a></td>
             <td>
                 <span ng-click="selectPlaylist(playlist);" class="glyphicon glyphicon-pencil forms-glyphicon"
                       aria-label="Select"></span>

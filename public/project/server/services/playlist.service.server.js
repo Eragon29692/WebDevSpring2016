@@ -18,7 +18,7 @@ module.exports = function(app, playlistModel, songModel) {
 
     function findPlaylistById(req, res) {
         var playlistId = req.params.playlistId;
-        var playlist = playlistModel.findByID(playlistId);
+        var playlist = playlistModel.FindByID(playlistId);
         res.json(playlist);
     }
 
@@ -74,6 +74,7 @@ module.exports = function(app, playlistModel, songModel) {
     function deleteSongInPlaylist(req, res) {
         var playlistId = req.params.playlistId;
         var songId = req.params.songId;
+        //console.log(songId);
         var songs = playlistModel.deleteSongInPlaylist(songId, playlistId);
         res.json(songs);
     }
@@ -88,7 +89,7 @@ module.exports = function(app, playlistModel, songModel) {
     function updateOrder(req, res) {
         var newOrder = req.body;
         var playlistId = req.params.playlistId;
-        console.log(newOrder);
+        //console.log(newOrder);
         var playlists = playlistModel.updateOrder(newOrder, playlistId);
         res.json(playlists);
     }

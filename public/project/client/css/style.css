@@ -159,3 +159,8 @@ h1.project-page-header {
     height: auto;
     background-color: #FFFFFF;
 }
+
+/*table sortable width fixed*/
+.ui-sortable-helper {
+    display: table;
+}

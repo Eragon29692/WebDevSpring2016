@@ -12,6 +12,7 @@
         var api = {
             createPlaylistForUser: createPlaylistForUser,
             findAllPlaylistsForUser: findAllPlaylistsForUser,
+            findPlaylistById: findPlaylistById,
             deletePlaylistById: deletePlaylistById,
             updatePlaylistById: updatePlaylistById
         };
@@ -23,6 +24,10 @@
 
         function findAllPlaylistsForUser(userId) {
             return $http.get("/api/project/user/" + userId + "/playlist");
+        }
+
+        function findPlaylistById(playlistId) {
+            return $http.get("/api/project/playlist/" + playlistId);
         }
 
         function deletePlaylistById(playlistId) {

@@ -22,6 +22,7 @@
 
         function render() {
             PlaylistService.findAllPlaylistsForUser($rootScope.currentUser._id).then (function (response) {
+                console.log(response.data);
                 $scope.playlists = response.data;
             });
         }

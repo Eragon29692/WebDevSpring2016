@@ -110,6 +110,7 @@ module.exports = function () {
 
     function deleteSongInPlaylist(songId, playlistId) {
         var songs = findAllSongInPlaylist(playlistId);
+        console.log(songId);
         for (var i = songs.length - 1; i >= 0; i--) {
             if (songId === songs[i]) {
                 songs.splice(i, 1);
@@ -127,7 +128,6 @@ module.exports = function () {
 
 
     function updateOrder(newOrder, playlistId) {
-        console.log(songs);
         var songs = findAllSongInPlaylist(playlistId);
         var temp = songs[newOrder.first];
         songs[newOrder.first] = songs[newOrder.second];
