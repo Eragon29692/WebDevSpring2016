@@ -10,7 +10,9 @@
     function Configure($routeProvider) {
         $routeProvider
             .when("/home",{
-                templateUrl: "views/home/home.view.html"
+                templateUrl: "views/home/home.view.html",
+                controller: "HomeController",
+                controllerAs: "model"
             })
             .when("/register", {
                 templateUrl: "views/users/register.view.html",
@@ -54,10 +56,6 @@
 
             .when("/crudUser",{
                 templateUrl: "views/users/user.crud.view.html"
-            })
-
-            .when("/crudPlaylist",{
-                templateUrl: "views/library/playlist.crud.view.html"
             })
 
             .when("/crudSong",{
