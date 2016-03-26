@@ -170,3 +170,10 @@ h1.project-page-header {
     overflow-x: visible !important;
     overflow-y: visible !important;
 }
+
+/*project readme paragraph*/
+.project-readme {
+    text-align: justify;
+    margin-right: 100px;
+    margin-left: 100px;
+}
