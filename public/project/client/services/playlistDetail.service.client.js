@@ -18,7 +18,8 @@
             getSongForPlaylist: getSongForPlaylist,
             deleteSongFromPlaylist: deleteSongFromPlaylist,
             //updateSong: updateSong,
-            updateOrder: updateOrder
+            updateOrder: updateOrder,
+            addSongToPlaylist: addSongToPlaylist
         };
         return api;
 /*
@@ -45,7 +46,16 @@
 */
         function updateOrder(newOrder, playlistId) {
             console.log(newOrder);
-            return $http.put("/api/project/playlist/" + playlistId + "/song", newOrder);
+            return $http.put("/api/project/playlist/" + playlistId + "/songOrder", newOrder);
+        }
+
+        function addSongToPlaylist(songId, playlistId) {
+            console.log(songId);
+            console.log(playlistId);
+            var addInfo = {};
+            addInfo.songId = songId;
+            addInfo.playlistId = playlistId;
+            return $http.put("/api/project/playlist/song/addSong", addInfo);
         }
     }
 })();

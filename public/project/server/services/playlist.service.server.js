@@ -37,6 +37,7 @@ module.exports = function(app, playlistModel, songModel) {
     }
 
     function updatePlaylist(req, res) {
+        console.log("run updatePlaylist")
         var playlistId = req.params.playlistId;
         var newPlaylist = req.body;
         var playlist = playlistModel.Update(playlistId, newPlaylist);
@@ -48,10 +49,10 @@ module.exports = function(app, playlistModel, songModel) {
     app.get("/api/project/playlist/:playlistId/song", findAllSongInPlaylist);
     app.get("/api/project/playlist/:playlistId/song/:songId", findSongInPlaylist);
     app.delete("/api/project/playlist/:playlistId/song/:songId", deleteSongInPlaylist);
-    app.post("/api/project/playlist/:playlistId/song", addSongInPlaylist);
+    app.put("/api/project/playlist/song/addSong", addSongInPlaylist);
     //app.put("/api/project/playlist/:playlistId/song/:songId", updateSongInPlaylist);
     //update sort order
-    app.put("/api/project/playlist/:playlistId/song", updateOrder);
+    app.put("/api/project/playlist/:playlistId/songOrder", updateOrder);
 
 
     function findAllSongInPlaylist(req, res) {
@@ -80,9 +81,9 @@ module.exports = function(app, playlistModel, songModel) {
     }
 
     function addSongInPlaylist(req, res) {
-        var newSong = req.body;
-        var playlistId = req.params.playlistId;
-        var song = playlistModel.addSongInPlaylist(newSong, playlistId);
+        var addInfo = req.body;
+        console.log(addInfo);
+        var song = playlistModel.addSongInPlaylist(addInfo.songId, addInfo.playlistId);
         res.json(song);
     }
 

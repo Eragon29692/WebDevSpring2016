@@ -12,17 +12,24 @@
 
         vm.search = search;
 
-        function init() {
 
+        function init() {
+            console.log($rootScope.searchWord);
+            if ($rootScope.searchWord) {
+                search($rootScope.searchWord);
+            }
         }
         init();
 
         function search(songTitle) {
-            SpotifyService
-                .searchSongByName(songTitle)
-                .then(function(response){
-                    vm.data = response.data;
-                });
+            if (songTitle) {
+                $rootScope.searchWord = vm.songTitle;
+                SpotifyService
+                    .searchSongByName(songTitle)
+                    .then(function (response) {
+                        vm.data = response.data;
+                    });
+            }
         }
     }
 })();

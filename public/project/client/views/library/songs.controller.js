@@ -7,7 +7,7 @@
         .module("MusicDBApp")
         .controller("SongController", SongController);
 
-    function SongController(SongService, $scope, $location, $rootScope) {
+    function SongController(SongService, PlaylistService, PlaylistDetailService, $scope, $location, $rootScope) {
         var vm = this;
         var currentSong;
         $scope.addSong = addSong;
@@ -15,8 +15,13 @@
         $scope.deleteSong = deleteSong;
         $scope.deleteUserSong = deleteUserSong;
         $scope.selectSong = selectSong;
+        $scope.addSongToPlaylist = addSongToPlaylist;
 
         function init() {
+            PlaylistService.findAllPlaylistsForUser($rootScope.currentUser._id).then (function (response) {
+                console.log(response.data);
+                $scope.playlists = response.data;
+            });
             render();
         }
 
@@ -67,6 +72,13 @@
             };
             $scope.song = selectedSong;
             $rootScope.currentSong = selectedSong;
+        }
+
+        function addSongToPlaylist(songId, playlistId) {
+            PlaylistDetailService.addSongToPlaylist(songId, playlistId).then( function (response) {
+                console.log("added");
+            });
+            render();
         }
     }
 })();

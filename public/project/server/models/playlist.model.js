@@ -121,6 +121,7 @@ module.exports = function () {
     }
 
     function addSongInPlaylist(songId, playlistId) {
+        console.log("run2");
         var songs = findAllSongInPlaylist(playlistId);
         songs.push(songId);
         return songs;

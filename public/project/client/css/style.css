@@ -164,3 +164,9 @@ h1.project-page-header {
 .ui-sortable-helper {
     display: table;
 }
+
+/*making drop-down overlay table*/
+.table-responsive {
+    overflow-x: visible !important;
+    overflow-y: visible !important;
+}
