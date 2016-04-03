@@ -1,4 +1,4 @@
-module.exports = function(app, formModel) {
+module.exports = function (app, formModel) {
 
 
     app.get("/api/assignment/user/:userId/form", findUserForm);
@@ -9,35 +9,65 @@ module.exports = function(app, formModel) {
 
     function findUserForm(req, res) {
         var userId = parseInt(req.params.userId);
-        var forms = formModel.findUserForms(userId);
-        res.json(forms);
+        formModel.findUserForms(userId).then(
+            function (doc) {
+                res.json(doc);
+            },
+            function (err) {
+                res.status(400).send(err);
+            }
+        );
     }
 
     function findFormById(req, res) {
         var formId = req.params.formId;
-        var form = formModel.findByID(formId);
-        res.json(form);
+        formModel.findByID(formId).then(
+            function (doc) {
+                res.json(doc);
+            },
+            function (err) {
+                res.status(400).send(err);
+            }
+        );
     }
 
     function deleteFormById(req, res) {
         var formId = req.params.formId;
-        var form = formModel.Delete(formId);
-        res.json(form);
+        formModel.Delete(formId).then(
+            function (doc) {
+                res.json(doc);
+            },
+            function (err) {
+                res.status(400).send(err);
+            }
+        );
     }
 
     function createForm(req, res) {
         var userId = parseInt(req.params.userId);
         var newForm = req.body;
         newForm.userId = userId;
-        var form = formModel.Create(newForm);
-        res.json(form);
+        formModel.Create(newForm).then(
+            function (doc) {
+                res.json(doc);
+            },
+            function (err) {
+                res.status(400).send(err);
+            }
+        );
     }
 
     function updateForm(req, res) {
         var formId = req.params.formId;
         var newForm = req.body;
-        var form = formModel.Update(formId, newForm);
-        res.json(form);
+        formModel.Update(formId, newForm).then(
+            function (doc) {
+                res.json(doc);
+            },
+            function (err) {
+                res.status(400).send(err);
+            }
+        );
     }
 
 }

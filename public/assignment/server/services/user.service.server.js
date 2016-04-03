@@ -1,4 +1,4 @@
-module.exports = function(app, userModel) {
+module.exports = function (app, userModel) {
 
 
     app.post("/api/assignment/user", createUser);
@@ -8,11 +8,17 @@ module.exports = function(app, userModel) {
     app.delete("/api/assignment/user/:id", deleteUserById);
 
 
-
     function createUser(req, res) {
         var user = req.body;
-        user = userModel.Create(user);
-        res.json(user);
+        user = userModel.Create(user).then(
+            function (doc) {
+                //req.session.currentUser = doc;
+                res.json(doc);
+            },
+            function (err) {
+                res.status(400).send(err);
+            }
+        );
     }
 
     function getUserEndPoint(req, res) {
@@ -20,14 +26,25 @@ module.exports = function(app, userModel) {
         var query = req.query;
 
         if (params.length == 0 && query == {}) {
-            var users = userModel.FindAll();
-            res.json(users);
+            userModel.FindAll().then(
+                function (doc) {
+                    res.json(doc);
+                },
+                function (err) {
+                    res.status(400).send(err);
+                }
+            );
         }
         else if (params.length == 0 && query.username != undefined && query.password == undefined) {
             var username = query.username;
-            var user = userModel.findUserByUsername(username);
-            console.log(user);
-            res.json(user);
+            userModel.findUserByUsername(username).then(
+                function (doc) {
+                    res.json(doc);
+                },
+                function (err) {
+                    res.status(400).send(err);
+                }
+            );
         }
         else if (params.length == 0 && req.query.username != undefined && req.query.password != undefined) {
             var username = query.username;
@@ -35,8 +52,14 @@ module.exports = function(app, userModel) {
             var credentials = {};
             credentials.username = username;
             credentials.password = password;
-            var user = userModel.findUserByCredentials(credentials);
-            res.json(user);
+            userModel.findUserByCredentials(credentials).then(
+                function (doc) {
+                    res.json(doc);
+                },
+                function (err) {
+                    res.status(400).send(err);
+                }
+            );
         }
         else {
             console.log(req.params);
@@ -47,23 +70,40 @@ module.exports = function(app, userModel) {
 
     function findUserById(req, res) {
         var userId = parseInt(req.params.id);
-        var user = userModel.findByID(userId);
-        console.log(user);
-        res.json(user);
+        userModel.findByID(userId).then(
+            function (doc) {
+                res.json(doc);
+            },
+            function (err) {
+                res.status(400).send(err);
+            }
+        );
     }
 
 
     function updateUser(req, res) {
         var user = req.body;
         var userID = parseInt(req.params.id);
-        user = userModel.Update(userID, user);
-        res.json(user);
+        userModel.Update(userID, user).then(
+            function (doc) {
+                res.json(doc);
+            },
+            function (err) {
+                res.status(400).send(err);
+            }
+        );
     }
 
     function deleteUserById(req, res) {
         var userID = parseInt(req.userId);
-        var user = userModel.Delete(userID);
-        res.json(user);
+        userModel.Delete(userID).then(
+            function (doc) {
+                res.json(doc);
+            },
+            function (err) {
+                res.status(400).send(err);
+            }
+        );
     }
 
 }

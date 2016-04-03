@@ -36,17 +36,17 @@
         function addField(fieldType) {
             var newField;
             if (fieldType === "singleLine") {
-                newField = {"_id": null, "label": "New Text Field", "type": "TEXT", "placeholder": "New Field"};
+                newField = {"label": "New Text Field", "type": "TEXT", "placeholder": "New Field"};
             }
             if (fieldType === "textFiled") {
-                newField = {"_id": null, "label": "New Text Field", "type": "TEXTAREA", "placeholder": "New Field"};
+                newField = {"label": "New Text Field", "type": "TEXTAREA", "placeholder": "New Field"};
             }
             if (fieldType === "date") {
-                newField = {"_id": null, "label": "New Date Field", "type": "DATE"};
+                newField = {"label": "New Date Field", "type": "DATE"};
             }
             if (fieldType === "dropDown") {
                 newField = {
-                    "_id": null, "label": "New Dropdown", "type": "OPTIONS", "options": [
+                    "label": "New Dropdown", "type": "OPTIONS", "options": [
                         {"label": "Option 1", "value": "OPTION_1"},
                         {"label": "Option 2", "value": "OPTION_2"},
                         {"label": "Option 3", "value": "OPTION_3"}
@@ -55,7 +55,7 @@
             }
             if (fieldType === "checkBox") {
                 newField = {
-                    "_id": null, "label": "New Checkboxes", "type": "CHECKBOXES", "options": [
+                    "label": "New Checkboxes", "type": "CHECKBOXES", "options": [
                         {"label": "Option A", "value": "OPTION_A"},
                         {"label": "Option B", "value": "OPTION_B"},
                         {"label": "Option C", "value": "OPTION_C"}
@@ -64,7 +64,7 @@
             }
             if (fieldType === "button") {
                 newField = {
-                    "_id": null, "label": "New Radio Buttons", "type": "RADIOS", "options": [
+                    "label": "New Radio Buttons", "type": "RADIOS", "options": [
                         {"label": "Option X", "value": "OPTION_X"},
                         {"label": "Option Y", "value": "OPTION_Y"},
                         {"label": "Option Z", "value": "OPTION_Z"}
@@ -83,15 +83,16 @@
             if (!(form === undefined))
                 FormService.updateFormById(form._id, form).then(function (respone) {
                     console.log(respone.data);
+                    render();
                 });
-            render();
         }
 
         function deleteField(fieldId) {
             FieldService.deleteFieldFromForm(fieldId, $routeParams.formId).then(function (respone) {
                 console.log(respone.data);
+                render();
             });
-            render();
+
         }
 
         function selectForm(form) {
@@ -114,7 +115,11 @@
                 console.log(ui.item.data('startPos'));
                 console.log($(ui.item).index());
                 var newOrder = {first: ui.item.data('startPos'), second: $(ui.item).index()};
-                FieldService.updateOrder(newOrder, $routeParams.formId);
+                FieldService.updateOrder(newOrder, $routeParams.formId).then(
+                    function (response) {
+                        render();
+                    }
+                );
             }
         };
 
@@ -125,19 +130,19 @@
                 controller: 'ModalInstanceCtrl',
                 resolve: {
                     field: function () {
-                        //console.log("1");
                         return field;
                     }
                 }
             });
 
-            modalInstance.result.then(function (newField) {
-                field = newField;
-                render();
-            }, function () {
-                //render();
-                console.log("dismissed");
-            });
+            modalInstance.result.then(
+                function (newField) {
+                    field = newField;
+                    render();
+                }, function () {
+                    //render();
+                    console.log("dismissed");
+                });
         }
 
 
@@ -157,15 +162,16 @@
         init();
 
         function optionsToString() {
-
             if (newField.options != undefined) {
-                console.log(newField.options);
+                console.log(newField);
                 var options = newField.options;
                 var resultString = "";
                 for (var o in options) {
                     resultString = resultString.concat(options[o].label, ":", options[o].value, "\n");
                 }
-                console.log(resultString);
+                //remove last \n
+                resultString = resultString.substring(0, resultString.length - 1);
+                //console.log(resultString);
                 newField.options = resultString;
             }
         }
@@ -183,6 +189,7 @@
                             resultOptions.push({label: options[o][0], value: options[o][1]});
                         }
                         else {
+                            console.log(newField);
                             console.log("invalid format");
                             return null;
                         }
@@ -191,8 +198,11 @@
                 newField.options = resultOptions;
             }
             console.log(newField);
-            FieldService.updateField(newField._id, $routeParams.formId, newField);
-            $uibModalInstance.close(field);
+            FieldService.updateField(newField._id, $routeParams.formId, newField).then(
+                function () {
+                    $uibModalInstance.close(field);
+                });
+
         };
 
         $scope.cancel = function () {

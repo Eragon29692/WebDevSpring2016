@@ -7,7 +7,7 @@
             href="#/login">Login</a></li>
     <li ng-class="{'active' : $location.url().indexOf('form') != -1, 'hidden' : currentUser === undefined}"><a
             href="#/forms">Form</a></li>
-    <li ng-class="{'active' : $location.url().indexOf('username') != -1, 'hidden' : currentUser === undefined}"><a
+    <li ng-class="{'active' : $location.url().indexOf('profile') != -1, 'hidden' : currentUser === undefined}"><a
             href="#/profile">Profile</a></li>
     <li ng-class="{'active' : $location.url().indexOf('admin') != -1, 'hidden' : currentUser === undefined || currentUser.roles === undefined || currentUser.roles.indexOf('admin') < 0}">
         <a href="#/admin">Admin</a>

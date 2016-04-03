@@ -18,43 +18,47 @@
         function init() {
             render();
         }
+
         init();
 
         function render() {
-            FormService.findAllFormsForUser($rootScope.currentUser._id).then (function (response) {
+            FormService.findAllFormsForUser($rootScope.currentUser._id).then(function (response) {
                 $scope.forms = response.data;
             });
         }
 
         function addForm(form) {
+            if (!(form === undefined)) {
+                form._id = undefined;
+                FormService.createFormForUser($rootScope.currentUser._id, form).then(function (respone) {
+                    console.log(respone.data);
+                    selectForm(respone.data);
+                    render();
+                });
+            }
+        }
+
+        function updateForm(form) {
             if (!(form === undefined))
-            FormService.createFormForUser($rootScope.currentUser._id, form).then (function (respone) {
+                FormService.updateFormById(form._id, form).then(function (respone) {
+                    console.log(respone.data);
+                    render();
+                });
+        }
+
+        function deleteForm(form) {
+            FormService.deleteFormById(form._id).then(function (respone) {
                 console.log(respone.data);
                 render();
             });
         }
 
-        function updateForm(form) {
-            if (!(form === undefined))
-            FormService.updateFormById(form._id, form).then (function (respone) {
-                console.log(respone.data);
-            });
-            render();
-        }
-
-        function deleteForm(form) {
-            FormService.deleteFormById(form._id).then (function (respone) {
-                console.log(respone.data);
-            });
-            render();
-        }
-
         function selectForm(form) {
             var selectedForm = {
-                _id    : form._id,
-                title  : form.title,
-                userId : form.userId,
-                fields : form.fields
+                _id: form._id,
+                title: form.title,
+                userId: form.userId,
+                fields: form.fields
             };
             $scope.form = selectedForm;
         }
