@@ -63,6 +63,7 @@ module.exports = function (db, mongoose) {
 
     function Update(userId, user) {
         var deferred = q.defer();
+
         UserModel.findById(userId, function (err, doc) {
             if (err) {
                 deferred.reject(err);
@@ -72,6 +73,7 @@ module.exports = function (db, mongoose) {
                 doc.firstName = user.firstName;
                 doc.lastName = user.lastName;
                 doc.email = user.email;
+                doc.phones = user.phones;
                 doc.save();
                 deferred.resolve(doc);
             }

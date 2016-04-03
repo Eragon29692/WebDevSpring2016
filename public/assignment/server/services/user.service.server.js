@@ -69,7 +69,7 @@ module.exports = function (app, userModel) {
 
 
     function findUserById(req, res) {
-        var userId = parseInt(req.params.id);
+        var userId = req.params.id;
         userModel.findByID(userId).then(
             function (doc) {
                 res.json(doc);
@@ -83,7 +83,7 @@ module.exports = function (app, userModel) {
 
     function updateUser(req, res) {
         var user = req.body;
-        var userID = parseInt(req.params.id);
+        var userID = req.params.id;
         userModel.Update(userID, user).then(
             function (doc) {
                 res.json(doc);
@@ -95,7 +95,7 @@ module.exports = function (app, userModel) {
     }
 
     function deleteUserById(req, res) {
-        var userID = parseInt(req.userId);
+        var userID = req.userId;
         userModel.Delete(userID).then(
             function (doc) {
                 res.json(doc);

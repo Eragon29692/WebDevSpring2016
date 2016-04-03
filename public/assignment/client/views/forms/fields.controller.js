@@ -169,9 +169,7 @@
                 for (var o in options) {
                     resultString = resultString.concat(options[o].label, ":", options[o].value, "\n");
                 }
-                //remove last \n
                 resultString = resultString.substring(0, resultString.length - 1);
-                //console.log(resultString);
                 newField.options = resultString;
             }
         }
