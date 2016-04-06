@@ -1,4 +1,5 @@
-module.exports = function(app, songModel, userModel) {
+var request = require('request');
+module.exports = function (app, songModel, userModel) {
     //app.post("/api/project/user/:userId/movie/:imdbID", userLikesMovie);
     //app.get("/api/project/movie/:imdbID/user", findUserLikes);
     app.post("/api/project/song/createSong", createsong);
@@ -7,13 +8,14 @@ module.exports = function(app, songModel, userModel) {
     app.post("/api/project/song/updateSongById", updateSongById);
     app.get("/api/project/song/findAllSongsForUser/:userId", findAllSongsForUser);
     app.get("/api/project/song/findAllSongs", findAllSongs);
-/*
-    findAllSongsForUser: findAllSongsForUser,
-        deleteSongById: deleteSongById,
-        updateSongById: updateSongById,
-        /////////////////////
-        createSong: createSong
-    */
+    app.get("/api/project/spotify/:track", searchSongSpotify);
+    /*
+     findAllSongsForUser: findAllSongsForUser,
+     deleteSongById: deleteSongById,
+     updateSongById: updateSongById,
+     /////////////////////
+     createSong: createSong
+     */
 
     function findAllSongs(req, res) {
         var songs = songModel.findAllSongs();
@@ -36,20 +38,20 @@ module.exports = function(app, songModel, userModel) {
         res.json(userSongs);
     }
 
-    function createsong (req, res) {
+    function createsong(req, res) {
         var song = req.body;
         song = songModel.createSong(song);
         res.json(song);
     }
 
-    function deleteSongById (req, res) {
+    function deleteSongById(req, res) {
         var song = req.body;
         console.log(song);
         var song = songModel.deleteSongById(song._id);
         res.json(song);
     }
 
-    function deleteUserSong (req, res) {
+    function deleteUserSong(req, res) {
         var deleteInfo = req.body;
         var user = userModel.findUserByID(deleteInfo.userID);
         var songID = deleteInfo.songID;
@@ -57,11 +59,21 @@ module.exports = function(app, songModel, userModel) {
         res.json(userSong);
     }
 
-    function updateSongById (req, res) {
+    function updateSongById(req, res) {
         var song = req.body;
         var song = songModel.updateSongById(song._id, song);
         res.json(song);
     }
 
+    function searchSongSpotify(req, res) {
+        var track = req.params.track;
+        request("http://api.spotify.com/v1/search?q=" + track + "&type=track&limit=10", function (error, response, body) {
+            if (!error && response.statusCode == 200) {
+                var info = JSON.parse(body);
+                res.json(info);
+            }
+        })
+
+    }
 
 }
