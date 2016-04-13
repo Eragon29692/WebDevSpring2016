@@ -24,18 +24,20 @@ module.exports = function (app, songModel, userModel) {
 
     function findAllSongsForUser(req, res) {
         var userId = req.params.userId;
-        var user = userModel.findUserByID(userId);
-        var songs = songModel.findAllSongs();
-        var userSongs = [];
-        for (var songID in user.songs) {
-            for (var f in songs) {
-                if (user.songs[songID] == songs[f]._id) {
-                    userSongs.push(songs[f]);
-                    //console.log(f);
+        userModel.findUserByID(userId).then(function (user) {
+                var songs = songModel.findAllSongs();
+                var userSongs = [];
+                for (var songID in user.songs) {
+                    for (var f in songs) {
+                        if (user.songs[songID] == songs[f]._id) {
+                            userSongs.push(songs[f]);
+                        }
+                    }
                 }
+                res.json(userSongs);
             }
-        }
-        res.json(userSongs);
+        );
+
     }
 
     function createsong(req, res) {
@@ -53,10 +55,13 @@ module.exports = function (app, songModel, userModel) {
 
     function deleteUserSong(req, res) {
         var deleteInfo = req.body;
-        var user = userModel.findUserByID(deleteInfo.userID);
+        var userID = deleteInfo.userID;
         var songID = deleteInfo.songID;
-        var userSong = userModel.deleteUserSong(songID, user);
-        res.json(userSong);
+        var userSong = userModel.deleteUserSong(songID, userID).then(
+            function (userSong) {
+                res.json(userSong);
+            }
+        );
     }
 
     function updateSongById(req, res) {

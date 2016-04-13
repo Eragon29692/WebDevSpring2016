@@ -25,11 +25,16 @@
   "dependencies": {
     "angular-modal-service": "^0.6.10",
     "angular-ui-sortable": "^0.13.4",
+    "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.15.0",
+    "cookie-parser": "^1.4.1",
     "express": "^3.4.8",
-    "mongoose": "^4.4.10",
+    "mongoose": "^4.4.12",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0",
     "q": "^1.4.1",
-    "request": "^2.70.0"
+    "request": "^2.70.0",
+    "session": "^0.1.0"
   },
   "devDependencies": {},
   "bundleDependencies": [],
