@@ -26,6 +26,9 @@
 
         function render() {
             UserService.findAllUsers().then(function (response) {
+                for (var user in response.data) {
+                    delete response.data[user].password;
+                }
                 $scope.users = response.data;
             });
         }
@@ -37,11 +40,12 @@
                 user.songs = user.songs.split(",");
                 UserService.createUser(user).then(function (respone) {
                     console.log(respone.data);
+                    delete respone.data.password;
+                    render();
                     selectUser(respone.data);
                 });
 
             }
-            render();
         }
 
         function updateUser(user) {
@@ -51,18 +55,18 @@
                 user.songs = user.songs.split(",");
                 UserService.updateUser(user).then(function (respone) {
                     console.log(respone.data);
+                    delete respone.data.password;
+                    render();
                     selectUser(respone.data);
                 });
-
             }
-            render();
         }
 
         function deleteUser(user) {
             UserService.deleteUserById(user._id).then( function (respone) {
                 console.log(respone.data);
+                render();
             });
-            render();
         }
 
         function selectUser(user) {
@@ -73,9 +77,14 @@
                 email: user.email,
                 roles: user.roles,
                 username: user.username,
-                password: user.password,
-                songs: user.songs.toString()
+                //password: user.password,
+                //songs: user.songs.toString()
             };
+            if (user.songs) {
+                selectedUser.songs = user.songs.toString();
+            } else {
+                selectedUser.songs = "";
+            }
             //selectedUser.songs = selectedUser.songs.split(",");
             $scope.user = selectedUser;
         }

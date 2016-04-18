@@ -1,117 +1,99 @@
 var mock = require("./song.mock.json");
-module.exports = function () {
+// load q promise library
+var q = require("q");
+
+module.exports = function (db, mongoose) {
+
+    // load user schema
+    //var SongSchema = require("./user.schema.server.js")(mongoose);
+    var SongSchema = mongoose.Schema({
+        "_id": String,
+        title: String,
+        artist: String,
+        album: String,
+        year: String
+    }, { "id": false, collection: 'songProject'});
+
+    // create user model from schema
+    var SongModel = mongoose.model('songProject', SongSchema);
 
     var api = {
-        //createSongForUser: createSongForUser,
-        //findAllSongsForUser: findAllSongsForUser,
         deleteSongById: deleteSongById,
         updateSongById: updateSongById,
-        /////////////////////
         createSong: createSong,
         findAllSongs: findAllSongs,
         findSongById: findSongById
     };
     return api;
 
-/*
-    //this function is soon to be depcrecated
-    function createSongForUser(userId, song) {
-        var newSong = {
-            _id: (new Date()).getTime(),
-            title: song.title,
-            artist: song.artist,
-            userId: userId
-        };
-        mock.push(newSong);
-        return newSong;
-    }
-*/
-    /*
-     function findAllSongsForUser(userId, callback) {
-     var userSongs = [];
-     for (var f in songs) {
-     if (userId === songs[f].userId) {
-     userSongs.push(songs[f]);
-     }
-     }
-     return callback(userSongs);
-     }
-     */
     function deleteSongById(songId) {
-        console.log(songId);
-        for (var i = mock.length - 1; i >= 0; i--) {
-            if (songId == mock[i]._id) {
-                mock.splice(i, 1);
-                return mock;
+        var deferred = q.defer();
+        SongModel.findById(songId, function (err, doc) {
+            if (err) {
+                deferred.reject(err);
+            } else {
+                doc.remove();
+                deferred.resolve(doc);
             }
-        }
-        return null;
-    }
-
-    //this won't be used
-    function updateSongById(songId, newSong) {
-        var updateSong = {
-            _id: newSong._id,
-            title: newSong.title,
-            artist: newSong.artist
-        };
-        for (var f in mock) {
-            if (songId === mock[f]._id) {
-                mock[f] = updateSong;
-                return updateSong;
-            }
-        }
-        return null;
-    }
-
-    ///////////////////////////////////////////////////////////
-/*    function findAllSongsForUser(userId, callback) {
-        UserService.findUserByID(userId, function (user) {
-            //console.log(user);
-            var userSongs = [];
-            for (var songID in user.songs) {
-                for (var f in songs) {
-                    if (user.songs[songID] === songs[f]._id) {
-                        userSongs.push(songs[f]);
-                        //console.log(f);
-                    }
-                }
-            }
-            return callback(userSongs);
         });
+        return deferred.promise;
     }
-*/
+
+    function updateSongById(songId, newSong) {
+        var deferred = q.defer();
+        SongModel.findById(songId, function (err, doc) {
+            if (err) {
+                deferred.reject(err);
+            } else {
+                doc.title = newSong.title;
+                doc.artist = newSong.artist;
+                doc.album = newSong.album;
+                doc.year = newSong.year;
+                doc.save();
+                deferred.resolve(doc);
+            }
+        });
+        return deferred.promise;
+    }
 
     function createSong(song) {
-        var newSong = {
-            _id: (new Date()).getTime().toString(),
-            title: song.title,
-            artist: song.artist,
-        };
-        mock.push(newSong);
-        return newSong;
+        var deferred = q.defer();
+        SongModel.create(song, function (err, doc) {
+            if (err) {
+                deferred.reject(err);
+            } else {
+                deferred.resolve(doc);
+            }
+        });
+        return deferred.promise;
     }
 
-    function  findAllSongs() {
-        return mock;
+    function findAllSongs() {
+        var deferred = q.defer();
+        SongModel.find({}, function (err, doc) {
+            if (err) {
+                deferred.reject(err);
+            } else {
+                deferred.resolve(doc);
+            }
+        });
+        return deferred.promise;
     }
 
+    //return null if not found
     function findSongById(songId) {
-        for (var s in mock) {
-            if (mock[s]._id === songId) {
-                return mock[s];
+        var deferred = q.defer();
+        SongModel.find({_id: songId}, function (err, doc) {
+            if (err) {
+                deferred.reject(err);
+            } else {
+                if (doc.length == 0) {
+                    deferred.resolve(null);
+                    return;
+                }
+                deferred.resolve(doc);
             }
-        }
-        return null;
+        });
+        return deferred.promise;
     }
-/*
-    function findMovieByImdbID(imdbID) {
-        for (var m in movies) {
-            if (movies[m].imdbID === imdbID) {
-                return movies[m];
-            }
-        }
-        return null;
-    }
-    */
 }

@@ -13,16 +13,19 @@
             findAllSongsForUser: findAllSongsForUser,
             findAllSongs: findAllSongs,
             deleteSongById: deleteSongById,
-            deleteUserSong: deleteUserSong,
             updateSongById: updateSongById,
-            /////////////////////
-            createSong: createSong
-
+            createSong: createSong,
+            addSongForUser: addSongForUser,
+            deleteUserSong: deleteUserSong
         };
         return api;
 
         function createSong(song) {
             return $http.post("/api/project/song/createSong", song);
+        }
+
+        function addSongForUser(song) {
+            return $http.post("/api/project/MusicBD/addSongForUser/" + $rootScope.currentUser._id, song);
         }
 
         function deleteSongById(song) {
@@ -34,7 +37,7 @@
             var deleteInfo = {};
             deleteInfo.songID = song._id;
             deleteInfo.userID = $rootScope.currentUser._id;
-            return $http.post("/api/project/song/deleteUserSong", deleteInfo);
+            return $http.post("/api/project/MusicBD/deleteUserSong", deleteInfo);
         }
 
         function updateSongById(song) {

@@ -1,6 +1,6 @@
 module.exports = function (app, db, mongoose) {
     var userModel = require("./models/user.model.server.js")(db, mongoose);
-    var songModel = require("./models/song.model.server.js")();
+    var songModel = require("./models/song.model.server.js")(db, mongoose);
     var playlistModel = require("./models/playlist.model.js")();
 
     var userService = require("./services/user.service.server.js")(app, songModel, userModel);

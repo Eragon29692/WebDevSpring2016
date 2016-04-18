@@ -27,18 +27,11 @@
                         }
                     },
                     function (err) {
-                        console.log(error);
+                        console.log(err);
                         vm.error = err;
                     }
                 );
             }
-            /*
-             UserService.createUser(user).then( function (respone) {
-             console.log(respone.data);
-             $rootScope.currentUser = respone.data;
-             $location.url("/profile");
-             });
-             */
         }
     }
 })();

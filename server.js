@@ -49,8 +49,8 @@ if (process.env.OPENSHIFT_MONGODB_DB_PASSWORD) {
 }
 
 // connect to the database
-var db = mongoose.connect(connectionString);
-var dbProject = mongoose.createConnection(connectionStringProject);
+//var db = mongoose.connect(connectionString);
+var dbProject = mongoose.connect(connectionStringProject);
 
 app.get('/hello', function (req, res) {
     res.send('hello world');
@@ -60,7 +60,7 @@ app.get('/', function (req, res) {
 });
 
 require('./public/project/server/app.js')(app, dbProject, mongoose);
-require('./public/assignment/server/app.js')(app, db, mongoose);
+//require('./public/assignment/server/app.js')(app, db, mongoose);
 
 app.listen(port, ipaddress);
 

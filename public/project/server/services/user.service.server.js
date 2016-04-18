@@ -9,15 +9,8 @@ module.exports = function (app, songModel, userModel) {
     app.get("/api/project/MusicDB/profile/:userId", profile);
     app.post("/api/project/MusicBD/deleteUser", deleteUserById);
     app.post("/api/project/MusicBD/updateUser", updateUser);
-    /*
-     findUserByCredentials: findUserByCredentials,
-     findAllUsers: findAllUsers,
-     createUser: createUser,
-     deleteUserById: deleteUserById,
-     updateUser: updateUser,
-     //////////////////////
-     findUserByID: findUserByID
-     */
+    app.post("/api/project/MusicBD/addSongForUser/:userId", addSongForUser);
+    app.post("/api/project/MusicBD/deleteUserSong", deleteUserSong);
 
     var auth = authorized;
     app.post('/api/login', passport.authenticate('local'), login);
@@ -45,13 +38,72 @@ module.exports = function (app, songModel, userModel) {
     function updateUser(req, res) {
         var user = req.body;
         var userID = user._id;
-        var oldUser = userModel.findUserByID(userID);
-        if (user.password)
-            user.password = bcrypt.hashSync(user.password);
-        else {
-            user.password = oldUser.password;
-        }
-        userModel.updateUser(userID, user).then(
+        userModel.findUserByID(userID).then(
+            function (oldUser) {
+                if (user.password)
+                    user.password = bcrypt.hashSync(user.password);
+                else {
+                    user.password = oldUser.password;
+                }
+                userModel.updateUser(userID, user).then(
+                    function (doc) {
+                        res.json(doc);
+                    },
+                    function (err) {
+                        console.log("thus")
+                        res.status(400).send(err);
+                    }
+                );
+            },
+            function (err) {
+                res.status(400).send(err);
+            }
+        );
+    }
+
+    function addSongForUser(req, res) {
+        var song = req.body;
+        var userId = req.params.userId;
+        songModel.findSongById(song._id).then(
+            function (searchedSong) {
+                if (searchedSong) {
+                    userModel.addSongForUser(userId, song._id).then(
+                        function (doc) {
+                            res.json(song);
+                        },
+                        function (err) {
+                            res.status(400).send(err);
+                        }
+                    );
+                } else {
+                    songModel.createSong(song).then(
+                        function (song) {
+                            userModel.addSongForUser(userId, song._id).then(
+                                function (doc) {
+                                    res.json(song);
+                                },
+                                function (err) {
+                                    res.status(400).send(err);
+                                }
+                            );
+                        },
+                        function (err) {
+                            res.status(400).send(err);
+                        }
+                    );
+                }
+            },
+            function (err) {
+                res.status(400).send(err);
+            }
+        );
+    }
+
+    function deleteUserSong(req, res) {
+        var deleteInfo = req.body;
+        var userID = deleteInfo.userID;
+        var songID = deleteInfo.songID;
+        var userSong = userModel.deleteUserSong(songID, userID).then(
             function (doc) {
                 res.json(doc);
             },
@@ -89,15 +141,17 @@ module.exports = function (app, songModel, userModel) {
         userModel
             .findUserByUsername(username)
             .then(
-                function(user) {
-                    if(user && bcrypt.compareSync(password, user.password)) {
+                function (user) {
+                    if (user && bcrypt.compareSync(password, user.password)) {
                         return done(null, user);
                     } else {
                         return done(null, false);
                     }
                 },
-                function(err) {
-                    if (err) { return done(err); }
+                function (err) {
+                    if (err) {
+                        return done(err);
+                    }
                 }
             );
     }
@@ -118,10 +172,10 @@ module.exports = function (app, songModel, userModel) {
         userModel
             .findUserByID(user._id)
             .then(
-                function(user){
+                function (user) {
                     done(null, user);
                 },
-                function(err){
+                function (err) {
                     done(err, null);
                 }
             );
@@ -141,13 +195,14 @@ module.exports = function (app, songModel, userModel) {
         res.json(user);
     }
 
-    function register (req, res) {
+    function register(req, res) {
         var user = req.body;
+
         userModel
             .findUserByUsername(user.username)
             .then(
-                function(user){
-                    if(user) {
+                function (newUser) {
+                    if (newUser) {
                         res.json(null);
                     } else {
                         // encrypt the password when registering
@@ -155,15 +210,16 @@ module.exports = function (app, songModel, userModel) {
                         return userModel.createUser(user);
                     }
                 },
-                function(err){
+                function (err) {
                     res.status(400).send(err);
                 }
             )
             .then(
-                function(user){
-                    if(user){
-                        req.login(user, function(err) {
-                            if(err) {
+                function (user) {
+                    console.log(user);
+                    if (user) {
+                        req.login(user, function (err) {
+                            if (err) {
                                 res.status(400).send(err);
                             } else {
                                 res.json(user);
@@ -171,7 +227,7 @@ module.exports = function (app, songModel, userModel) {
                         });
                     }
                 },
-                function(err){
+                function (err) {
                     res.status(400).send(err);
                 }
             );

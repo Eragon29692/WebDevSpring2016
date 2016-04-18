@@ -3,13 +3,13 @@ var mock = require("./user.mock.json");
 // load q promise library
 var q = require("q");
 
-module.exports = function(db, mongoose) {
+module.exports = function (db, mongoose) {
 
     // load user schema
     var UserSchema = require("./user.schema.server.js")(mongoose);
 
     // create user model from schema
-    var UserModel = db.model('userProject', UserSchema);
+    var UserModel = mongoose.model('userProject', UserSchema);
 
     var api = {
         //findUserByCredentials: findUserByCredentials,
@@ -19,20 +19,21 @@ module.exports = function(db, mongoose) {
         deleteUserById: deleteUserById,
         updateUser: updateUser,
         findUserByID: findUserByID,
+        addSongForUser: addSongForUser,
         deleteUserSong: deleteUserSong
     };
     return api;
 
     /*
-    function findUserByCredentials(credentials) {
-        for (var u in mock) {
-            if (credentials.username === mock[u].username && credentials.password === mock[u].password) {
-                return mock[u];
-            }
-        }
-        return null;
-    }
-*/
+     function findUserByCredentials(credentials) {
+     for (var u in mock) {
+     if (credentials.username === mock[u].username && credentials.password === mock[u].password) {
+     return mock[u];
+     }
+     }
+     return null;
+     }
+     */
     function findUserByUsername(username) {
         var deferred = q.defer();
         UserModel.findOne({username: username}, function (err, doc) {
@@ -59,7 +60,16 @@ module.exports = function(db, mongoose) {
 
     function createUser(user) {
         var deferred = q.defer();
-        UserModel.create(user, function (err, doc) {
+        var newUser = {
+            username: user.username,
+            password: user.password,
+            songs: [],
+            roles: "admin",
+            email: user.email,
+            firstName: "",
+            lastName: ""
+        }
+        UserModel.create(newUser, function (err, doc) {
             if (err) {
                 deferred.reject(err);
             } else {
@@ -95,6 +105,7 @@ module.exports = function(db, mongoose) {
                 doc.lastName = user.lastName;
                 doc.roles = user.roles;
                 doc.songs = user.songs;
+                doc.email = user.email;
                 doc.save();
                 deferred.resolve(doc);
             }
@@ -115,6 +126,22 @@ module.exports = function(db, mongoose) {
         return deferred.promise;
     }
 
+    //no insert if not exist
+    function addSongForUser(userId, songId) {
+        var deferred = q.defer();
+        UserModel.findById(userId, function (err, doc) {
+            if (err) {
+                deferred.reject(err);
+            } else {
+                if (doc.songs.indexOf(songId) == -1) {
+                    doc.songs.push(songId);
+                    doc.save();
+                }
+                deferred.resolve(songId);
+            }
+        });
+        return deferred.promise;
+    }
 
     function deleteUserSong(songID, userID) {
         var deferred = q.defer();
