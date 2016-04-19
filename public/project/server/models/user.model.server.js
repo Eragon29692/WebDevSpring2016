@@ -64,7 +64,7 @@ module.exports = function (db, mongoose) {
             username: user.username,
             password: user.password,
             songs: [],
-            roles: "admin",
+            roles: "user",
             email: user.email,
             firstName: "",
             lastName: ""
@@ -85,6 +85,10 @@ module.exports = function (db, mongoose) {
             if (err) {
                 deferred.reject(err);
             } else {
+                if (doc.username === "admin" || doc.username === "alice") {
+                    deferred.resolve(doc);
+                    return;
+                }
                 doc.remove();
                 deferred.resolve(doc);
             }

@@ -40,7 +40,7 @@
         }
 
         function updateSong(song) {
-            if (!(song === undefined))
+            if (!(song._id === undefined))
                 SongService.updateSongById(song).then(function (respone) {
                     console.log(respone.data);
                     render();

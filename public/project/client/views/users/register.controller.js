@@ -17,7 +17,6 @@
 
         function register(user) {
             if (vm.myform.$valid) {
-                delete user.password2;
                 SecurityService.register(user).then(
                     function (response) {
                         if (response.data) {

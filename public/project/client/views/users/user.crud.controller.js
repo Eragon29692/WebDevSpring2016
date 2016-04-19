@@ -49,7 +49,8 @@
         }
 
         function updateUser(user) {
-            if (!(user === undefined)) {
+            console.log(user);
+            if (!(user._id === undefined)) {
                 if (user.songs === undefined)
                     user.songs = "";
                 user.songs = user.songs.split(",");

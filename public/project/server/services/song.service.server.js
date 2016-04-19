@@ -51,6 +51,9 @@ module.exports = function (app, songModel, userModel) {
 
     function createSong(req, res) {
         var song = req.body;
+        if (song._id === undefined) {
+            song._id = (new Date()).getTime().toString();
+        }
         songModel.createSong(song).then(
             function (song) {
                 res.json(song);
