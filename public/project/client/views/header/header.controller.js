@@ -19,6 +19,8 @@
         }*/
 
         function logout() {
+            $rootScope.currentUser = undefined;
+            $rootScope.currentSong = undefined;
             SecurityService
                 .logout()
                 .then(

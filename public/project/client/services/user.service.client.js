@@ -42,7 +42,7 @@
         function deleteUserById(userId) {
             var deleteInfo = {};
             deleteInfo.userID = userId;
-            return $http.post("/api/project/MusicBD/deleteUser", deleteInfo);
+            return $http.post("/api/project/MusicBD/deleteUser/" + $rootScope.currentUser._id, deleteInfo);
         }
 
         function updateUser(user) {

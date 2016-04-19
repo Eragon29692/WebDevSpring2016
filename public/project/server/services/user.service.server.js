@@ -7,7 +7,7 @@ module.exports = function (app, songModel, userModel) {
     app.get("/api/project/MusicDB/findAllUsers", findAllUsers);
     app.post("/api/project/MusicDB/register", register);
     app.get("/api/project/MusicDB/profile/:userId", profile);
-    app.post("/api/project/MusicBD/deleteUser", deleteUserById);
+    app.post("/api/project/MusicBD/deleteUser/:currentUser", deleteUserById);
     app.post("/api/project/MusicBD/updateUser", updateUser);
     app.post("/api/project/MusicBD/addSongForUser/:userId", addSongForUser);
     app.post("/api/project/MusicBD/deleteUserSong", deleteUserSong);
@@ -116,6 +116,11 @@ module.exports = function (app, songModel, userModel) {
     function deleteUserById(req, res) {
         var deleteInfo = req.body;
         var userID = deleteInfo.userID;
+        var currentUser = req.params.currentUser;
+        if (userID === currentUser) {
+            res.json(null);
+            return;
+        }
         userModel.deleteUserById(userID).then(
             function (doc) {
                 res.json(doc);

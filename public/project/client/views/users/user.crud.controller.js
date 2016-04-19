@@ -39,7 +39,7 @@
                     user.songs = "";
                 user.songs = user.songs.split(",");
                 UserService.createUser(user).then(function (respone) {
-                    console.log(respone.data);
+                    //console.log(respone.data);
                     delete respone.data.password;
                     render();
                     selectUser(respone.data);
@@ -49,13 +49,13 @@
         }
 
         function updateUser(user) {
-            console.log(user);
+            //console.log(user);
             if (!(user._id === undefined)) {
                 if (user.songs === undefined)
                     user.songs = "";
                 user.songs = user.songs.split(",");
                 UserService.updateUser(user).then(function (respone) {
-                    console.log(respone.data);
+                    //console.log(respone.data);
                     delete respone.data.password;
                     render();
                     selectUser(respone.data);
@@ -65,7 +65,7 @@
 
         function deleteUser(user) {
             UserService.deleteUserById(user._id).then( function (respone) {
-                console.log(respone.data);
+                //console.log(respone.data);
                 render();
             });
         }
