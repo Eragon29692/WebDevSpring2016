@@ -11,7 +11,7 @@ module.exports = function(app, playlistModel, songModel) {
     app.put("/api/project/playlist/:playlistId", updatePlaylist);
 
     function findUserPlaylist(req, res) {
-        var userId = parseInt(req.params.userId);
+        var userId = req.params.userId;
         playlistModel.findUserPlaylists(userId).then(
             function (doc) {
                 res.json(doc);
@@ -47,7 +47,7 @@ module.exports = function(app, playlistModel, songModel) {
     }
 
     function createPlaylist(req, res) {
-        var userId = parseInt(req.params.userId);
+        var userId = req.params.userId;
         var newPlaylist = req.body;
         newPlaylist.userId = userId;
         playlistModel.Create(newPlaylist).then(
