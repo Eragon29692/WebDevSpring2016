@@ -6,7 +6,7 @@ module.exports = function (app, songModel, userModel) {
     app.post("/api/project/song/updateSongById", updateSongById);
     app.get("/api/project/song/findAllSongsForUser/:userId", findAllSongsForUser);
     app.get("/api/project/song/findAllSongs", findAllSongs);
-    app.get("/api/project/spotify/:track", searchSongSpotify);
+    app.get("/api/project/spotify/:track/:userId", searchSongSpotify);
 
 
 
@@ -88,8 +88,9 @@ module.exports = function (app, songModel, userModel) {
 
     function searchSongSpotify(req, res) {
         var track = req.params.track;
+        var userId = req.params.userId;
         var songs = [];
-        request("http://api.spotify.com/v1/search?q=" + track + "&type=track&limit=10",
+        request("http://api.spotify.com/v1/search?q=" + track + "&type=track&limit=20",
             function (error, response, body) {
                 if (!error && response.statusCode == 200) {
                     var info = JSON.parse(body);
@@ -106,10 +107,24 @@ module.exports = function (app, songModel, userModel) {
                             artistString += info[i].artists[a].name + ", ";
                         }
                         song.artist = artistString.substring(0, artistString.length - 2);
+                        song.inLibrary = "false";
                         songs.push(song);
                     }
-                    console.log(songs);
-                    res.json(songs);
+                    userModel.findUserByID(userId).then(
+                        function (user) {
+                            for (var i = 0; i < songs.length; i++) {
+                                if (user.songs.indexOf(songs[i]._id) != -1) {
+                                    songs[i].inLibrary = "true";
+                                }
+                            }
+                            res.json(songs);
+                        },
+                        function (err) {
+                            res.status(400).send(err);
+                        }
+                    );
+                    //console.log(songs);
+                    //res.json(songs);
                 }
             });
     }

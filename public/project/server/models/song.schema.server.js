@@ -3,12 +3,12 @@
  */
 module.exports = function(mongoose) {
     // use mongoose to declare a user schema
-    var SongSchema = new Schema({
+    var SongSchema = mongoose.Schema({
         "_id": String,
         title: String,
         artist: String,
         album: String,
         year: String
-    }, { "_id": false });
+    }, {"id": false, collection: 'songProject'});
     return SongSchema;
 };

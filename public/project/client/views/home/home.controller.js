@@ -12,11 +12,9 @@
 
         vm.search = search;
         vm.addSong = addSong;
+        vm.deleteSong = deleteSong;
 
         function init() {
-            //if ($rootScope.searchWord) {
-            //    search($rootScope.searchWord);
-            //}
             loggin();
         }
 
@@ -30,6 +28,7 @@
                 SpotifyService
                     .searchSongByName(songTitle)
                     .then(function (response) {
+                        //console.log(response.data);
                         vm.data = response.data;
                         vm.clicked = false;
                     });
@@ -41,7 +40,17 @@
             console.log(song);
             if ($rootScope.currentUser) {
                 SongService.addSongForUser(song).then(function (respone) {
-                    console.log(respone.data);
+                    song.inLibrary = true;
+                    //console.log(respone.data);
+                });
+            }
+        }
+
+        function deleteSong(song) {
+            if ($rootScope.currentUser) {
+                SongService.deleteUserSong(song).then(function (respone) {
+                    song.inLibrary = false;
+                    //console.log(respone.data);
                 });
             }
         }

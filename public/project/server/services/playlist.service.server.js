@@ -12,36 +12,66 @@ module.exports = function(app, playlistModel, songModel) {
 
     function findUserPlaylist(req, res) {
         var userId = parseInt(req.params.userId);
-        var playlists = playlistModel.findUserPlaylists(userId);
-        res.json(playlists);
+        playlistModel.findUserPlaylists(userId).then(
+            function (doc) {
+                res.json(doc);
+            },
+            function (err) {
+                res.status(400).send(err);
+            }
+        );
     }
 
     function findPlaylistById(req, res) {
         var playlistId = req.params.playlistId;
-        var playlist = playlistModel.FindByID(playlistId);
-        res.json(playlist);
+        playlistModel.FindByID(playlistId).then(
+            function (doc) {
+                res.json(doc);
+            },
+            function (err) {
+                res.status(400).send(err);
+            }
+        );
     }
 
     function deletePlaylistById(req, res) {
         var playlistId = req.params.playlistId;
-        var playlist = playlistModel.Delete(playlistId);
-        res.json(playlist);
+        playlistModel.Delete(playlistId).then(
+            function (doc) {
+                res.json(doc);
+            },
+            function (err) {
+                res.status(400).send(err);
+            }
+        );
     }
 
     function createPlaylist(req, res) {
         var userId = parseInt(req.params.userId);
         var newPlaylist = req.body;
         newPlaylist.userId = userId;
-        var playlist = playlistModel.Create(newPlaylist);
-        res.json(playlist);
+        playlistModel.Create(newPlaylist).then(
+            function (doc) {
+                res.json(doc);
+            },
+            function (err) {
+                res.status(400).send(err);
+            }
+        );
     }
 
     function updatePlaylist(req, res) {
         console.log("run updatePlaylist")
         var playlistId = req.params.playlistId;
         var newPlaylist = req.body;
-        var playlist = playlistModel.Update(playlistId, newPlaylist);
-        res.json(playlist);
+        playlistModel.Update(playlistId, newPlaylist).then(
+            function (doc) {
+                res.json(doc);
+            },
+            function (err) {
+                res.status(400).send(err);
+            }
+        );
     }
 
 
@@ -57,41 +87,79 @@ module.exports = function(app, playlistModel, songModel) {
 
     function findAllSongInPlaylist(req, res) {
         var playlistId = req.params.playlistId;
-        var playlist = playlistModel.findAllSongInPlaylist(playlistId);
-        var songs = [];
-        for (var s in playlist) {
-            songs.push(songModel.findSongById(playlist[s]))
-        }
-        res.json(songs);
+        playlistModel.findAllSongInPlaylist(playlistId).then(
+            function (playlist) {
+                songModel.findSongs(playlist).then(
+                    function (doc) {
+                        for (var i = 0; i < playlist.length; i++) {
+                            for (var j = 0; j < doc.length; j++) {
+                                if (playlist[i] === doc[j]._id) {
+                                    playlist[i] = doc[j];
+                                }
+                            }
+                        }
+                        res.json(playlist);
+                    },
+                    function (err) {
+                        res.status(400).send(err);
+                    }
+                );
+            },
+            function (err) {
+                res.status(400).send(err);
+            }
+        );
     }
 
     function findSongInPlaylist(req, res) {
         var playlistId = req.params.playlistId;
         var songId = req.params.songId;
-        var songId = playlistModel.findSongInPlaylist(songId, playlistId);
-        res.json(songModel.findSongById(songId));
+        songModel.findSongById(songId).then(
+            function (doc) {
+               res.json(doc);
+            },
+            function (err) {
+                res.status(400).send(err);
+            }
+        );
     }
 
     function deleteSongInPlaylist(req, res) {
         var playlistId = req.params.playlistId;
         var songId = req.params.songId;
-        //console.log(songId);
-        var songs = playlistModel.deleteSongInPlaylist(songId, playlistId);
-        res.json(songs);
+        playlistModel.deleteSongInPlaylist(songId, playlistId).then(
+            function (doc) {
+                res.json(doc);
+            },
+            function (err) {
+                res.status(400).send(err);
+            }
+        );
     }
 
     function addSongInPlaylist(req, res) {
         var addInfo = req.body;
         console.log(addInfo);
-        var song = playlistModel.addSongInPlaylist(addInfo.songId, addInfo.playlistId);
-        res.json(song);
+        playlistModel.addSongInPlaylist(addInfo.songId, addInfo.playlistId).then(
+            function (doc) {
+                res.json(doc);
+            },
+            function (err) {
+                res.status(400).send(err);
+            }
+        );
     }
 
     function updateOrder(req, res) {
         var newOrder = req.body;
         var playlistId = req.params.playlistId;
-        //console.log(newOrder);
-        var playlists = playlistModel.updateOrder(newOrder, playlistId);
-        res.json(playlists);
+        playlistModel.updateOrder(newOrder, playlistId).then(
+            function (doc) {
+                res.json(doc);
+            },
+            function (err) {
+                res.status(400).send(err);
+            }
+        );
     }
 }

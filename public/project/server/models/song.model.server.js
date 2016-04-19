@@ -5,15 +5,16 @@ var q = require("q");
 module.exports = function (db, mongoose) {
 
     // load user schema
-    //var SongSchema = require("./user.schema.server.js")(mongoose);
+    var SongSchema = require("./song.schema.server.js")(mongoose);
+    /*
     var SongSchema = mongoose.Schema({
         "_id": String,
         title: String,
         artist: String,
         album: String,
         year: String
-    }, { "id": false, collection: 'songProject'});
-
+    }, {"id": false, collection: 'songProject'});
+*/
     // create user model from schema
     var SongModel = mongoose.model('songProject', SongSchema);
 
@@ -22,7 +23,8 @@ module.exports = function (db, mongoose) {
         updateSongById: updateSongById,
         createSong: createSong,
         findAllSongs: findAllSongs,
-        findSongById: findSongById
+        findSongById: findSongById,
+        findSongs: findSongs
     };
     return api;
 
@@ -91,6 +93,18 @@ module.exports = function (db, mongoose) {
                     deferred.resolve(null);
                     return;
                 }
+                deferred.resolve(doc);
+            }
+        });
+        return deferred.promise;
+    }
+
+    function findSongs(songs) {
+        var deferred = q.defer();
+        SongModel.find({_id :  { $in: songs }}, function (err, doc) {
+            if (err) {
+                deferred.reject(err);
+            } else {
                 deferred.resolve(doc);
             }
         });
