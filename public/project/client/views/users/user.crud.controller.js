@@ -35,14 +35,16 @@
 
         function addUser(user) {
             if (!(user === undefined)) {
-                if (user.songs === undefined)
-                    user.songs = "";
-                user.songs = user.songs.split(",");
-                UserService.createUser(user).then(function (respone) {
+                //if (user.songs === undefined)
+                //    user.songs = "";
+                //user.songs = user.songs.split(",");
+                UserService.addUser(user).then(function (respone) {
                     //console.log(respone.data);
-                    delete respone.data.password;
-                    render();
-                    selectUser(respone.data);
+                    if (respone.data) {
+                        delete respone.data.password;
+                        render();
+                        selectUser(respone.data);
+                    }
                 });
 
             }
@@ -64,7 +66,7 @@
         }
 
         function deleteUser(user) {
-            UserService.deleteUserById(user._id).then( function (respone) {
+            UserService.deleteUserById(user._id).then(function (respone) {
                 //console.log(respone.data);
                 render();
             });

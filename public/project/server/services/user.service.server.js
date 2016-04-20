@@ -11,6 +11,7 @@ module.exports = function (app, songModel, userModel) {
     app.post("/api/project/MusicBD/updateUser", updateUser);
     app.post("/api/project/MusicBD/addSongForUser/:userId", addSongForUser);
     app.post("/api/project/MusicBD/deleteUserSong", deleteUserSong);
+    app.post("/api/project/MusicDB/addUser", addUser);
 
     var auth = authorized;
     app.post('/api/login', passport.authenticate('local'), login);
@@ -200,9 +201,35 @@ module.exports = function (app, songModel, userModel) {
         res.json(user);
     }
 
+    function addUser(req, res) {
+        var user = req.body;
+        userModel
+            .findUserByUsername(user.username)
+            .then(
+                function (newUser) {
+                    if (newUser) {
+                        res.json(null);
+                    } else {
+                        // encrypt the password when registering
+                        user.password = bcrypt.hashSync(user.password);
+                        userModel.createUser(user).then(
+                            function (doc) {
+                                res.json(doc);
+                            },
+                            function (err) {
+                                res.status(400).send(err);
+                            }
+                        );
+                    }
+                },
+                function (err) {
+                    res.status(400).send(err);
+                }
+            )
+    }
+
     function register(req, res) {
         var user = req.body;
-
         userModel
             .findUserByUsername(user.username)
             .then(
@@ -221,7 +248,6 @@ module.exports = function (app, songModel, userModel) {
             )
             .then(
                 function (user) {
-                    console.log(user);
                     if (user) {
                         req.login(user, function (err) {
                             if (err) {
