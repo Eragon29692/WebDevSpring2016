@@ -7,11 +7,13 @@ module.exports = function (app, songModel, userModel) {
     app.get("/api/project/song/findAllSongsForUser/:userId", findAllSongsForUser);
     app.get("/api/project/song/findAllSongs", findAllSongs);
     app.get("/api/project/spotify/:track/:userId", searchSongSpotify);
-
+    app.post("/api/project/song/addComment", addComment);
+    app.post("/api/project/song/deleteComment", deleteComment);
+    app.get("/api/project/song/findSongById/:songId", findSongById);
 
 
     function findAllSongs(req, res) {
-        var songs = songModel.findAllSongs().then(
+        songModel.findAllSongs().then(
             function (doc) {
                 res.json(doc);
             },
@@ -105,6 +107,7 @@ module.exports = function (app, songModel, userModel) {
                         song.album = info[i].album.name;
                         song.cover = info[i].album.images[0].url;
                         song.year = "0000";
+                        song.comment = [];
                         var artistString = "";
                         for (a in info[i].artists) {
                             artistString += info[i].artists[a].name + ", ";
@@ -126,10 +129,48 @@ module.exports = function (app, songModel, userModel) {
                             res.status(400).send(err);
                         }
                     );
-                    //console.log(songs);
-                    //res.json(songs);
                 }
             });
     }
+
+    function addComment(req, res) {
+        var comment = req.body;
+        var songId = comment.songId;
+        songModel.addComment(songId, comment).then(
+            function (doc) {
+                res.json(doc);
+            },
+            function (err) {
+                res.status(400).send(err);
+            }
+        );
+    }
+
+    function deleteComment(req, res) {
+        var comment = req.body;
+        var songId = comment.songId;
+        songModel.deleteComment(songId, comment._id).then(
+            function (doc) {
+                res.json(doc);
+            },
+            function (err) {
+                res.status(400).send(err);
+            }
+        );
+    }
+
+    function findSongById(req, res) {
+        var songId = req.params.songId;
+        songModel.findSongById(songId).then(
+            function (doc) {
+                res.json(doc);
+            },
+            function (err) {
+                res.status(400).send(err);
+            }
+        );
+    }
+
+
 
 }

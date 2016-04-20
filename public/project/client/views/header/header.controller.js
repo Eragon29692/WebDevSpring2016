@@ -8,15 +8,12 @@
         .controller("HeaderController", HeaderController );
 
     function HeaderController(SecurityService, $scope, $rootScope, $location) {
+
         $scope.logout = logout;
+
         function init() {
         }
         init();
-        /*
-        function logout() {
-            $rootScope.currentUser = undefined;
-            $rootScope.currentSong = undefined;
-        }*/
 
         function logout() {
             $rootScope.currentUser = undefined;

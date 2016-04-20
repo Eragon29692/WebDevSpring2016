@@ -65,9 +65,12 @@ module.exports = function (db, mongoose) {
             password: user.password,
             songs: [],
             roles: "user",
-            email: user.email,
+            email: "",
             firstName: "",
             lastName: ""
+        }
+        if (user.email) {
+            newUser.email = user.email;
         }
         UserModel.create(newUser, function (err, doc) {
             if (err) {

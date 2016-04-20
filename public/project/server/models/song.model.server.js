@@ -4,18 +4,10 @@ var q = require("q");
 
 module.exports = function (db, mongoose) {
 
-    // load user schema
+    // load song schema
     var SongSchema = require("./song.schema.server.js")(mongoose);
-    /*
-    var SongSchema = mongoose.Schema({
-        "_id": String,
-        title: String,
-        artist: String,
-        album: String,
-        year: String
-    }, {"id": false, collection: 'songProject'});
-*/
-    // create user model from schema
+
+    // create song model from schema
     var SongModel = mongoose.model('songProject', SongSchema);
 
     var api = {
@@ -24,7 +16,10 @@ module.exports = function (db, mongoose) {
         createSong: createSong,
         findAllSongs: findAllSongs,
         findSongById: findSongById,
-        findSongs: findSongs
+        findSongs: findSongs,
+        deleteComment: deleteComment,
+        addComment: addComment,
+        findSongById: findSongById
     };
     return api;
 
@@ -50,7 +45,6 @@ module.exports = function (db, mongoose) {
                 doc.title = newSong.title;
                 doc.artist = newSong.artist;
                 doc.album = newSong.album;
-                doc.year = newSong.year;
                 doc.save();
                 deferred.resolve(doc);
             }
@@ -101,7 +95,7 @@ module.exports = function (db, mongoose) {
 
     function findSongs(songs) {
         var deferred = q.defer();
-        SongModel.find({_id :  { $in: songs }}, function (err, doc) {
+        SongModel.find({_id: {$in: songs}}, function (err, doc) {
             if (err) {
                 deferred.reject(err);
             } else {
@@ -110,4 +104,45 @@ module.exports = function (db, mongoose) {
         });
         return deferred.promise;
     }
+
+    function addComment(songId, comment) {
+        var deferred = q.defer();
+        SongModel.findById(songId, function (err, doc) {
+            if (err) {
+                deferred.reject(err);
+            } else {
+                doc.comment.push(comment);
+                doc.save();
+                deferred.resolve(doc);
+            }
+        });
+        return deferred.promise;
+    }
+
+    function deleteComment(songId, commentId) {
+        var deferred = q.defer();
+        SongModel.findById(songId, function (err, doc) {
+            if (err) {
+                deferred.reject(err);
+            } else {
+                doc.comment.id(commentId).remove();
+                doc.save();
+                deferred.resolve(doc.comment);
+            }
+        });
+        return deferred.promise;
+    }
+
+    function findSongById(songId) {
+        var deferred = q.defer();
+        SongModel.findById(songId, function (err, doc) {
+            if (err) {
+                deferred.reject(err);
+            } else {
+                deferred.resolve(doc);
+            }
+        });
+        return deferred.promise;
+    }
+
 }

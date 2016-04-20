@@ -16,7 +16,10 @@
             updateSongById: updateSongById,
             createSong: createSong,
             addSongForUser: addSongForUser,
-            deleteUserSong: deleteUserSong
+            deleteUserSong: deleteUserSong,
+            addComment: addComment,
+            deleteComment: deleteComment,
+            findSongById: findSongById
         };
         return api;
 
@@ -52,5 +55,16 @@
             return $http.get("/api/project/song/findAllSongs");
         }
 
+        function addComment(comment) {
+            return $http.post("/api/project/song/addComment", comment);
+        }
+
+        function deleteComment(comment) {
+            return $http.post("/api/project/song/deleteComment", comment);
+        }
+
+        function findSongById(songId) {
+            return $http.get("/api/project/song/findSongById/" + songId);
+        }
     }
 })();
