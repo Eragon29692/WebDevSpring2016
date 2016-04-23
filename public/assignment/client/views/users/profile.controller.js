@@ -19,8 +19,9 @@
         }
 
         function render() {
-            var user = UserService.findUserByUsername($rootScope.currentUser.username).then(function (respone) {
+            UserService.findUserByUsername($rootScope.currentUser.username).then(function (respone) {
                 vm.user = respone.data;
+                delete vm.user.password;
                 ToString();
             });
         }
@@ -50,6 +51,9 @@
 
         function update(user) {
             if (vm.myform.$valid) {
+                if (user.password == "") {
+                    delete user.password
+                }
                 var emails = user.email;
                 if (emails != "") {
                     emails = emails.split(",");

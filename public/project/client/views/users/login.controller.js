@@ -27,36 +27,16 @@
                     })
                     .then(
                         function (response) {
-                            //if (respone.data != null) {
                             console.log(response.data);
                             $rootScope.currentUser = response.data;
                             $location.url("/profile");
-                            //}
-                            //else {
-                            //console.log("invalid combination");
-                            //vm.invalidSubmit = true;
-                            //}
+
                         },
                         function (err) {
                             console.log("invalid combination");
                             vm.invalidSubmit = true;
                         }
                     );
-            /*
-            UserService.findUserByCredentials({
-                username: user.username,
-                password: user.password
-            }).then(function (respone) {
-                if (respone.data != null) {
-                    console.log(respone.data);
-                    $rootScope.currentUser = respone.data;
-                    $location.url("/profile");
-                }
-                else {
-                    console.log("invalid combination");
-                    vm.invalidSubmit = true;
-                }
-            });*/
         }
     }
 })();

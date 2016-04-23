@@ -16,12 +16,21 @@
         init();
 
         function register(user) {
-            if (vm.myform.$valid)
-                UserService.createUser(user).then (function (respone) {
-                    console.log(respone.data);
-                    $rootScope.currentUser = respone.data;
-                    $location.url("/profile");
-                });
+            if (vm.myform.$valid) {
+                UserService.register(user).then(
+                    function (response) {
+                        if (response.data) {
+                            console.log(response.data);
+                            $rootScope.currentUser = response.data;
+                            $location.url("/profile");
+                        }
+                    },
+                    function (err) {
+                        console.log(err);
+                        vm.error = err;
+                    }
+                );
+            }
         }
     }
 })();

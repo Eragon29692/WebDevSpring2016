@@ -74,6 +74,7 @@ module.exports = function (db, mongoose) {
                 doc.lastName = user.lastName;
                 doc.email = user.email;
                 doc.phones = user.phones;
+                doc.roles = user.roles;
                 doc.save();
                 deferred.resolve(doc);
             }

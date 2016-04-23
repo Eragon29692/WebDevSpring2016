@@ -18,19 +18,28 @@
 
         init();
 
+
         function login(user) {
-            if (vm.myform.$valid)
-                UserService.findUserByCredentials(user.username, user.password).then(function (respone) {
-                    if (respone.data != null) {
-                        console.log(respone.data);
-                        $rootScope.currentUser = respone.data;
-                        $location.url("/profile");
-                    }
-                    else {
-                        console.log("invalid combination");
-                        vm.invalidSubmit = true;
-                    }
-                });
+            if (vm.myform.$valid) {
+                console.log(user);
+                UserService
+                    .login({
+                        username: user.username,
+                        password: user.password
+                    })
+                    .then(
+                        function (response) {
+                            console.log(response.data);
+                            $rootScope.currentUser = response.data;
+                            $location.url("/profile");
+
+                        },
+                        function (err) {
+                            console.log("invalid combination");
+                            vm.invalidSubmit = true;
+                        }
+                    );
+            }
         }
     }
 })();

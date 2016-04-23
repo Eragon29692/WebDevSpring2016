@@ -6,10 +6,11 @@ module.exports = function(mongoose) {
     var UserSchema = mongoose.Schema({
         username: String,
         password: String,
-        firstName: String,
-        lastName: String,
-        email: [String],
-        phones: [String]
+        firstName: { type: String, default: "" },
+        lastName: { type: String, default: "" },
+        email: { type: [String], default: [] },
+        phones: { type: [String], default: [] },
+        roles: { type: String, default: "user" }
     }, {collection: 'user'});
     return UserSchema;
 };

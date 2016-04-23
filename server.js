@@ -9,13 +9,12 @@ var app = express();
 // install and require the mongoose library
 var mongoose = require('mongoose');
 // create a default connection string
-var connectionString = 'mongodb://127.0.0.1:27017/webdevelopment';
 var connectionStringProject = 'mongodb://127.0.0.1:27017/webdevProject';
 
 var ipaddress = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
 var port = process.env.OPENSHIFT_NODEJS_PORT || 3000;
 
-//app.use(express.session({ secret: process.env.PASSPORT_SECRET }));
+//app.use(express.session({ secret: process.env.SESSION_SECRET }));
 
 
 //app.use(passport.initialize());
@@ -26,21 +25,18 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use('/public', express.static('public'));
 app.use(cookieParser())
+
 app.use(session({
-    secret: 'meanstackisthebest',
+    secret: process.env.SESSION_SECRET,
     resave: true,
     saveUninitialized: true
 }));
+
 app.use(passport.initialize());
 app.use(passport.session());
 
 
 if (process.env.OPENSHIFT_MONGODB_DB_PASSWORD) {
-    connectionString = process.env.OPENSHIFT_MONGODB_DB_USERNAME + ":" +
-        process.env.OPENSHIFT_MONGODB_DB_PASSWORD + "@" +
-        process.env.OPENSHIFT_MONGODB_DB_HOST + ':' +
-        process.env.OPENSHIFT_MONGODB_DB_PORT + '/' +
-        process.env.OPENSHIFT_APP_NAME;
     connectionStringProject = process.env.OPENSHIFT_MONGODB_DB_USERNAME + ":" +
         process.env.OPENSHIFT_MONGODB_DB_PASSWORD + "@" +
         process.env.OPENSHIFT_MONGODB_DB_HOST + ':' +
@@ -59,7 +55,7 @@ app.get('/', function (req, res) {
     res.redirect('/public');
 });
 
-require('./public/project/server/app.js')(app, dbProject, mongoose);
+//require('./public/project/server/app.js')(app, dbProject, mongoose);
 require('./public/assignment/server/app.js')(app, dbProject, mongoose);
 
 app.listen(port, ipaddress);

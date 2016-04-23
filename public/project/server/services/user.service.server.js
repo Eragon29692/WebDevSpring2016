@@ -14,12 +14,12 @@ module.exports = function (app, songModel, userModel) {
     app.post("/api/project/MusicDB/addUser", addUser);
 
     var auth = authorized;
-    app.post('/api/login', passport.authenticate('local'), login);
+    app.post('/api/login', passport.authenticate('project'), login);
     app.post('/api/logout', logout);
     app.get('/api/loggedin', loggedin);
     app.post('/api/register', register);
 
-    passport.use(new LocalStrategy(localStrategy));
+    passport.use('project', new LocalStrategy(localStrategy));
     passport.serializeUser(serializeUser);
     passport.deserializeUser(deserializeUser);
 
@@ -51,7 +51,6 @@ module.exports = function (app, songModel, userModel) {
                         res.json(doc);
                     },
                     function (err) {
-                        console.log("thus")
                         res.status(400).send(err);
                     }
                 );
@@ -175,16 +174,18 @@ module.exports = function (app, songModel, userModel) {
     }
 
     function deserializeUser(user, done) {
-        userModel
-            .findUserByID(user._id)
-            .then(
-                function (user) {
-                    done(null, user);
-                },
-                function (err) {
-                    done(err, null);
-                }
-            );
+        if (user.songs) {
+            userModel
+                .findUserByID(user._id)
+                .then(
+                    function (user) {
+                        done(null, user);
+                    },
+                    function (err) {
+                        done(err, null);
+                    }
+                );
+        }
     }
 
     function loggedin(req, res) {
