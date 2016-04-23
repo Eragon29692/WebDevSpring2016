@@ -32,17 +32,19 @@
         }
 
         function addSong(song) {
-            if (!(song === undefined))
+            if (song && !(song === undefined))
                 SongService.createSong(song).then(function (respone) {
                     console.log(respone.data);
+                    $scope.song = undefined;
                     render();
                 });
         }
 
         function updateSong(song) {
-            if (!(song._id === undefined))
+            if (song && !(song._id === undefined))
                 SongService.updateSongById(song).then(function (respone) {
                     console.log(respone.data);
+                    $scope.song = undefined;
                     render();
                 });
         }

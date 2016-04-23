@@ -34,16 +34,13 @@
         }
 
         function addUser(user) {
-            if (!(user === undefined)) {
-                //if (user.songs === undefined)
-                //    user.songs = "";
-                //user.songs = user.songs.split(",");
+            if (user && !(user === undefined)) {
                 UserService.addUser(user).then(function (respone) {
                     //console.log(respone.data);
                     if (respone.data) {
                         delete respone.data.password;
+                        $scope.user = undefined;
                         render();
-                        selectUser(respone.data);
                     }
                 });
 
@@ -52,15 +49,15 @@
 
         function updateUser(user) {
             //console.log(user);
-            if (!(user._id === undefined)) {
+            if (user && !(user._id === undefined)) {
                 if (user.songs === undefined)
                     user.songs = "";
                 user.songs = user.songs.split(",");
                 UserService.updateUser(user).then(function (respone) {
                     //console.log(respone.data);
                     delete respone.data.password;
+                    $scope.user = undefined;
                     render();
-                    selectUser(respone.data);
                 });
             }
         }
